@@ -7,6 +7,9 @@ export default class Home extends Component {
 
     }
   }
+  // componentDidMount() {
+  //   axios.get(req.session.users)
+  // }
   render() {
     return (
       <div>Home</div>

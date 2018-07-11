@@ -1,0 +1,26 @@
+.postCreator {
+  height: 87vh;
+  border: 3px solid black;
+  padding: 12px;
+}
+
+.postContainer {
+  border: 3px dotted red;
+  height: 100%;
+}
+
+.titleArea {
+  resize: none;
+  border: 1px solid black;
+  width: 250px;
+  height: 19px;
+  margin-top: 55px;
+}
+
+.contentArea {
+  resize: none;
+  border: 1px solid black;
+  width: 250px;
+  height: 304px;
+  margin-top: 15px;
+}
