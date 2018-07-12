@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 export default class Home extends Component {
   constructor() {
@@ -7,9 +8,9 @@ export default class Home extends Component {
 
     }
   }
-  // componentDidMount() {
-  //   axios.get(req.session.users)
-  // }
+  componentDidMount() {
+    axios.get('/api/user-data')
+  }
   render() {
     return (
       <div>Home</div>

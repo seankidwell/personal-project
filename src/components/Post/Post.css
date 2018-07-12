@@ -1,11 +1,9 @@
 .postCreator {
   height: 87vh;
-  border: 3px solid black;
-  padding: 12px;
+  padding: 17px;
 }
 
 .postContainer {
-  border: 3px dotted red;
   height: 100%;
 }
 
@@ -13,7 +11,7 @@
   resize: none;
   border: 1px solid black;
   width: 250px;
-  height: 19px;
+  height: 21px;
   margin-top: 55px;
 }
 

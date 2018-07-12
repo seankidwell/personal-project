@@ -1,0 +1,16 @@
+.postPage {
+  height: 87vh;
+  padding: 17px;
+}
+
+.postPageContainer {
+  height: 100%;
+}
+
+.commentContent {
+  resize: none;
+  border: 1px solid black;
+  width: 290px;
+  height: 105px;
+  margin-top: 15px;
+}

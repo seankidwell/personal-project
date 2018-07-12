@@ -31,6 +31,7 @@ massive(CONNECTION_STRING).then(db => {
 });
 
 app.get("/auth/callback", async (req, res) => {
+
   let payload = {
     client_id: REACT_APP_CLIENT_ID,
     client_secret: CLIENT_SECRET,
@@ -64,11 +65,18 @@ app.get("/auth/callback", async (req, res) => {
   }
 });
 
+app.get('/api/logout', controller.logout);
+
+app.get('/api/user-data', controller.getUserData);
+
 app.get('/api/forum/posts', controller.getAllPosts);
 app.get('/api/forum/posts/:id', controller.getPost);
 app.post('/api/forum/posts', controller.createPost);
 app.put('/api/forum/posts/:id', controller.editPost);
 app.delete('/api/forum/posts/:id', controller.deletePost);
+
+app.get('/api/forum/comments/:id', controller.getComments);
+app.post('/api/forum/comments/:postId/', controller.createComment);
 
 app.listen(port, () => {
   console.log(`listening on ${port}`)

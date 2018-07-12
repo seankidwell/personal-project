@@ -1,26 +1,23 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {getUserData} from '../../redux/users';
 import './Post.css'
 
-export default class Post extends Component {
+class Post extends Component {
   constructor() {
     super();
     this.state = {
       title: '',
       content: '',
+      tagButtons: [],
       tags: [],
       user_id: null
     }
   }
 
   componentDidMount() {
-    axios.get(`/api/forum/posts/${this.props.match.params.id}`).then(res => {
-      this.setState({
-        title: res.data[0].title,
-        content: res.data[0].content,
-        tags: res.data[0].tags
-      })
-    })
+    this.setState({user_id: this.props.user.id})
   }
 
   changeTitle(value) {
@@ -45,9 +42,17 @@ export default class Post extends Component {
           <br/>
           <textarea className='contentArea' placeholder='content' onChange={e => this.changeContent(e.target.value)}/>
           <br/>
-          <button onClick={this.createPost}>Post</button>
+          {this.state.user_id?<button onClick={this.createPost}>Submit</button>:null}
         </div>
       </div>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, {getUserData})(Post)

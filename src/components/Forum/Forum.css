@@ -1,10 +1,8 @@
 .forum {
   height: 87vh;
-  border: 3px solid black;
-  padding: 12px;
+  padding: 17px;
 }
 .posts {
-  border: 3px dotted red;
   height: 100%
 }
 .post {
