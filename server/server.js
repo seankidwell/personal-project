@@ -1,13 +1,13 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const massive = require('massive');
-const axios = require('axios');
-const controller = require('./controller');
-require('dotenv').config();
+const express = require("express");
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const massive = require("massive");
+const axios = require("axios");
+const controller = require("./controller");
+require("dotenv").config();
 
 const app = express();
-const port = 3090
+const port = 3090;
 
 let {
   REACT_APP_CLIENT_ID,
@@ -31,7 +31,6 @@ massive(CONNECTION_STRING).then(db => {
 });
 
 app.get("/auth/callback", async (req, res) => {
-
   let payload = {
     client_id: REACT_APP_CLIENT_ID,
     client_secret: CLIENT_SECRET,
@@ -56,28 +55,29 @@ app.get("/auth/callback", async (req, res) => {
   let userExists = await db.find_user([sub]);
   if (userExists[0]) {
     req.session.user = userExists[0];
-    res.redirect('http://localhost:3000/#/');
+    res.redirect("http://localhost:3000/#/");
   } else {
     db.create_user([sub, name, picture]).then(createdUser => {
       req.session.user = createdUser[0];
-      res.redirect('http://localhost:3000/#/');
+      res.redirect("http://localhost:3000/#/");
     });
   }
 });
 
-app.get('/api/logout', controller.logout);
+app.get("/api/logout", controller.logout);
 
-app.get('/api/user-data', controller.getUserData);
+app.get("/api/user-data", controller.getUserData);
 
-app.get('/api/forum/posts', controller.getAllPosts);
-app.get('/api/forum/posts/:id', controller.getPost);
-app.post('/api/forum/posts', controller.createPost);
-app.put('/api/forum/posts/:id', controller.editPost);
-app.delete('/api/forum/posts/:id', controller.deletePost);
+app.get("/api/forum/posts", controller.getPostsWithUsers);
+app.get("/api/forum/post/:postId", controller.getPostWithUser);
+app.post("/api/forum/posts", controller.createPost);
+app.put("/api/forum/posts/:id", controller.editPost);
+app.delete("/api/forum/posts/:id", controller.deletePost);
 
-app.get('/api/forum/comments/:id', controller.getComments);
-app.post('/api/forum/comments/:postId/', controller.createComment);
+app.get("/api/forum/comments/:postId", controller.getCommentsWithUsers);
+
+app.post("/api/forum/comments/:postId", controller.createComment);
 
 app.listen(port, () => {
-  console.log(`listening on ${port}`)
-})
+  console.log(`listening on ${port}`);
+});

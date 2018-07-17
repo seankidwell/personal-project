@@ -17,7 +17,7 @@ class Post extends Component {
   }
 
   componentDidMount() {
-    this.setState({user_id: this.props.user.id})
+    this.setState({user_id: this.props.user.user_id})
   }
 
   changeTitle(value) {

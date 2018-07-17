@@ -1,3 +1,3 @@
 update posts
-set title = $1, content = $2, tags = $3
+set post_title = $1, post_content = $2, tags = $3
 where id = $4;

@@ -7,10 +7,34 @@
   height: 100%;
 }
 
+.post {
+  text-align: left;
+  word-wrap: break-word;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 8px;
+  background-color: rgb(224, 224, 224);
+}
+
 .commentContent {
   resize: none;
   border: 1px solid black;
   width: 290px;
   height: 105px;
   margin-top: 15px;
+}
+
+.comments {
+  text-align: left;
+  word-wrap: break-word;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: rgb(224, 224, 224)
+}
+
+.submitButton {
+  margin-bottom: 15px;
 }

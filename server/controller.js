@@ -11,17 +11,17 @@ module.exports = {
     }
   },
 
-  getAllPosts: (req, res) => {
+  getPostsWithUsers: (req, res) => {
     const db = req.app.get("db");
-    db.retrieve_all_posts().then(posts => {
+    db.retrieve_posts_with_users().then(posts => {
       res.send(posts)
     })
   },
 
-  getPost: (req, res) => {
+  getPostWithUser: (req, res) => {
     const db = req.app.get("db");
-    let {id} = req.params
-    db.retrieve_post([id]).then(post => {
+    let {postId} = req.params
+    db.retrieve_post_with_user([postId]).then(post => {
       res.send(post)
     })
   },
@@ -51,10 +51,10 @@ module.exports = {
     })
   },
 
-  getComments: (req, res) => {
+  getCommentsWithUsers: (req, res) => {
     const db = req.app.get("db");
-    let {id} = req.params;
-    db.retrieve_comments([id]).then(comments => {
+    let {postId} = req.params;
+    db.retrieve_comments_with_users([postId]).then(comments => {
       res.send(comments)
     })
   },

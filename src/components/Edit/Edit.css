@@ -1,11 +1,9 @@
 .editCreator {
   height: 87vh;
-  border: 3px solid black;
-  padding: 12px;
+  padding: 17px;
 }
 
 .editContainer {
-  border: 3px dotted red;
   height: 100%;
 }
 

@@ -1,2 +1,2 @@
-insert into comments(content, user_id, post_id)
+insert into comments(comment_content, user_id, post_id)
 values ($1, $2, $3)

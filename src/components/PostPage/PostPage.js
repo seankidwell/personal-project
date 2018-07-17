@@ -9,8 +9,8 @@ class PostPage extends Component {
     super();
     this.state = {
       postId: null,
-      title: "",
-      content: "",
+      postTitle: "",
+      postContent: "",
       userId: null,
       comments: [],
       commentContent: ''
@@ -18,15 +18,21 @@ class PostPage extends Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/forum/posts/${this.props.match.params.id}`).then(res => {
+    axios.get(`/api/forum/post/${this.props.match.params.id}`).then(res => {
+      console.log(res.data)
+      let {post_title, post_content, user_id} = res.data[0];
       this.setState({
-        postId: res.data[0].id,
-        title: res.data[0].title,
-        content: res.data[0].content
+        postId: this.props.match.params.id,
+        postTitle: post_title,
+        postContent: post_content,
+        userId: user_id
       })
     })
     axios.get(`/api/forum/comments/${this.props.match.params.id}`).then(res => {
-      this.setState({comments: res.data})
+      console.log(res.data)
+      this.setState({
+        comments: res.data
+      })
     })
     axios.get('/api/user-data').then(res => {
       this.setState({userId: res.data.id})
@@ -45,14 +51,14 @@ class PostPage extends Component {
   }
 
   back() {
-    this.props.history.push()
+    this.props.history.push('/forum')
   }
 
   render() {
     let resultComments = this.state.comments.map((comment,i) => {
       return (
-        <div key={comment.id}>
-          {comment.content}
+        <div className='comments' key={comment.comment_id}>
+          {comment.comment_content}
         </div>
       )
     })
@@ -60,11 +66,13 @@ class PostPage extends Component {
       <div className='postPage'>
         <div className='postPageContainer'>
           <button onClick={() => this.back()}>Back</button>
-          <div className='postPageTitle'>{this.state.title}</div>
-          <div className='postPageContent'>{this.state.content}</div>
+          <div className='post'>
+            <h1>{this.state.postTitle}:</h1>
+            {this.state.postContent}
+          </div>
           <textarea className='commentContent' placeholder='comment' value={this.state.commentContent} onChange={e => this.changeCommentContent(e.target.value)}></textarea>
           <br/>
-          <button onClick={() => this.createComment()}>Submit</button>
+          <button className='submitButton' onClick={() => this.createComment()}>Submit</button>
           {resultComments}
         </div>
       </div>

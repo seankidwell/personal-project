@@ -1,9 +1,9 @@
 create table posts (
-  id serial primary key,
-  title varchar(35),
-  content text,
+  post_id serial primary key,
+  post_title varchar(35),
+  post_content text,
   tags text[],
-  created_at timestamp default now(),
-  updated_at timestamp default now(),
-  user_id integer references users (id)
+  post_created_at timestamp default now(),
+  post_updated_at timestamp default now(),
+  user_id integer references users (user_id)
 );

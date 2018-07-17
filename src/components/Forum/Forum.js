@@ -15,6 +15,7 @@ class Forum extends Component {
 
   componentDidMount() {
     axios.get('/api/forum/posts').then(res => {
+      console.log(res.data)
       this.setState({posts: res.data})
     })
     axios.get('/api/user-data').then(res => {
@@ -36,12 +37,20 @@ class Forum extends Component {
     let {user} = this.props;
     let {posts} = this.state;
     let mappedPosts = posts.map((post,i) => {
+      let mappedTags = post.tags.map((tag,i) => {
+        <div>{tag[i]}</div>
+      })
       return(
-        <div key={post.id} className='post'>
-          <h1 className='postTitle' onClick={() => this.goToPost(post.id)}>{post.title}</h1>
-          <div className='postContent'>{post.content}</div>
-          {user.id===post.user_id?<Link to={`/edit/${post.id}`}><button>Edit</button></Link>:null}
-          {user.id===post.user_id?<button onClick={() => this.deletePost(post.id)}>Delete</button>:null}
+        <div key={post.post_id} className='forumPost'>
+          <div className='titleTags'>
+            <h1><Link to={`/post/${post.post_id}`}>{post.post_title}</Link></h1>
+            <div className='tags'>{mappedTags}</div>
+          </div>
+          <div className='editDelete'>
+            {user.user_id===post.user_id?<Link to={`/edit/${post.id}`}><button>Edit</button></Link>:null}
+            <br/>
+            {user.user_id===post.user_id?<button onClick={() => this.deletePost(post.post_id)}>Delete</button>:null}
+          </div>
         </div>
       )
     })
@@ -52,7 +61,7 @@ class Forum extends Component {
 
           {mappedPosts}
 
-          {this.props.user.id?<Link to={'/post'}><button>Create Post</button></Link>:null}
+          {this.props.user.user_id?<Link to={'/post'}><button className='createPost'>Create Post</button></Link>:null}
         </div>
       </div>
     )

@@ -5,4 +5,28 @@
 
 .homeContainer {
   height: 100%;
+  background-color: lightgray;
+}
+
+.ad {
+  width: 100%;
+  height: 70px;
+}
+
+.ad img {
+  height: 100%;
+  width: 100%;
+}
+
+.hero-otw {
+  height: 50px;
+}
+
+.hero-otw img {
+  height: 100%;
+  width: 100%;
+}
+
+.villain-otw {
+  height: 50px
 }

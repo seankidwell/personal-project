@@ -13,5 +13,6 @@ export default (
     <Route exact path={'/post'} component={Post}/>
     <Route path={'/post/:id'} component={PostPage}/>
     <Route path={'/edit/:id'} component={Edit}/>
+    <Route path={'/store'} />
   </Switch>
 )
