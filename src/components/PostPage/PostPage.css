@@ -10,10 +10,10 @@
 .post {
   text-align: left;
   word-wrap: break-word;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 10px;
   margin-bottom: 5px;
-  padding: 8px;
+  padding: 10px;
   background-color: rgb(224, 224, 224);
 }
 
@@ -30,11 +30,34 @@
   word-wrap: break-word;
   border: 1px solid black;
   border-radius: 5px;
-  margin-bottom: 5px;
-  padding: 5px;
+  margin-bottom: 8px;
+  padding: 7px;
   background-color: rgb(224, 224, 224)
 }
 
+.userNameAndDate {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.backToPosts {
+  background-color: red;
+  color: white;
+  font-size: 17px;
+  padding: 2px 8px;
+  border: 2px solid black;
+  margin-bottom: 18px;
+  margin-top: 5px;
+}
+
 .submitButton {
-  margin-bottom: 15px;
+  background-color: red;
+  color: white;
+  font-size: 17px;
+  padding: 2px 8px;
+  border-radius: 25px;
+  border: 2px solid black;
+  margin-bottom: 18px;
+  margin-top: 5px;
 }

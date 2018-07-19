@@ -57,7 +57,7 @@ export default class Edit extends Component {
             onChange={e => this.changeContent(e.target.value)}
           />
           <br />
-          <button onClick={this.editPost}>Submit</button>
+          <button className='submitButton' onClick={this.editPost}>Submit</button>
         </div>
       </div>
     );

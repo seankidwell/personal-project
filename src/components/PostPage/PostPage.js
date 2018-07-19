@@ -8,34 +8,27 @@ class PostPage extends Component {
   constructor() {
     super();
     this.state = {
+      postData: {},
       postId: null,
-      postTitle: "",
-      postContent: "",
       userId: null,
       comments: [],
       commentContent: ''
     };
   }
 
-  componentDidMount() {
-    axios.get(`/api/forum/post/${this.props.match.params.id}`).then(res => {
-      console.log(res.data)
-      let {post_title, post_content, user_id} = res.data[0];
-      this.setState({
-        postId: this.props.match.params.id,
-        postTitle: post_title,
-        postContent: post_content,
-        userId: user_id
+  componentDidMount = async () => {
+    let {data: [postData]} = await axios.get(`/api/forum/post/${this.props.match.params.id}`)
+    this.setState({
+      postData: postData,
+      postId: this.props.match.params.id
       })
-    })
     axios.get(`/api/forum/comments/${this.props.match.params.id}`).then(res => {
-      console.log(res.data)
       this.setState({
         comments: res.data
       })
     })
     axios.get('/api/user-data').then(res => {
-      this.setState({userId: res.data.id})
+      this.setState({userId: res.data.user_id})
     })
   }
 
@@ -58,17 +51,25 @@ class PostPage extends Component {
     let resultComments = this.state.comments.map((comment,i) => {
       return (
         <div className='comments' key={comment.comment_id}>
-          {comment.comment_content}
+          <div className='userNameAndDate'>
+            <span className='detailInfo'>-{comment.user_name}-</span>
+            <span className='detailInfo'>{comment.comment_updated_at}</span>
+          </div>
+          <div>{comment.comment_content}</div>
         </div>
       )
     })
     return (
       <div className='postPage'>
         <div className='postPageContainer'>
-          <button onClick={() => this.back()}>Back</button>
+          <button className='backToPosts' onClick={() => this.back()}>Back to Posts</button>
           <div className='post'>
-            <h1>{this.state.postTitle}:</h1>
-            {this.state.postContent}
+            <div className='userNameAndDate'>
+              <span className='detailInfo'>-{this.state.postData.user_name}-</span>
+              <span className='detailInfo'>{this.state.postData.post_updated_at}</span>
+            </div>
+            <h1>{this.state.postData.post_title}:</h1>
+            {this.state.postData.post_content}
           </div>
           <textarea className='commentContent' placeholder='comment' value={this.state.commentContent} onChange={e => this.changeCommentContent(e.target.value)}></textarea>
           <br/>

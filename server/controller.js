@@ -1,3 +1,4 @@
+const moment = require("moment");
 module.exports = {
 
   logout: (req, res) => {
@@ -14,6 +15,9 @@ module.exports = {
   getPostsWithUsers: (req, res) => {
     const db = req.app.get("db");
     db.retrieve_posts_with_users().then(posts => {
+      posts.forEach(post => {
+        post.post_updated_at = moment(post.post_updated_at).format('L')
+      })
       res.send(posts)
     })
   },
@@ -22,6 +26,9 @@ module.exports = {
     const db = req.app.get("db");
     let {postId} = req.params
     db.retrieve_post_with_user([postId]).then(post => {
+      post.forEach(obj => {
+        obj.post_updated_at = moment(obj.post_updated_at).format('L')
+      })
       res.send(post)
     })
   },
@@ -29,8 +36,8 @@ module.exports = {
   createPost: (req, res) => {
     const db = req.app.get("db");
     let {title, content, tags, user_id} = req.body;
-    db.create_post([title, content, tags, user_id]).then(() => {
-      res.end()
+    db.create_post([title, content, tags, user_id]).then(post => {
+      res.send(post)
     })
   },
 
@@ -55,6 +62,9 @@ module.exports = {
     const db = req.app.get("db");
     let {postId} = req.params;
     db.retrieve_comments_with_users([postId]).then(comments => {
+      comments.forEach(comment => {
+        comment.comment_updated_at = moment(comment.comment_updated_at).format('L')
+      })
       res.send(comments)
     })
   },

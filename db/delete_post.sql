@@ -1,2 +1,2 @@
 delete from posts
-where id = $1;
+where post_id = $1;

@@ -13,7 +13,7 @@
   border: 2px solid black;
   margin-bottom: 10px;
   padding: 8px;
-  height: 60px;
+  height: 65px;
   background-color: rgb(224, 224, 224);
   display: flex;
   justify-content: space-between;
@@ -26,6 +26,15 @@
   padding: 6px 12px;
   border-radius: 25px;
   border: 2px solid black
+}
+
+.editDeleteButton {
+  background-color: darkgray;
+}
+
+.detailInfo {
+  font-size: 13px;
+  color: rgb(71, 71, 71)
 }
 
 .tags {

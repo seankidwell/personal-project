@@ -15,7 +15,6 @@ class Forum extends Component {
 
   componentDidMount() {
     axios.get('/api/forum/posts').then(res => {
-      console.log(res.data)
       this.setState({posts: res.data})
     })
     axios.get('/api/user-data').then(res => {
@@ -43,13 +42,14 @@ class Forum extends Component {
       return(
         <div key={post.post_id} className='forumPost'>
           <div className='titleTags'>
+            <span className='detailInfo'>-{post.user_name}-</span>
             <h1><Link to={`/post/${post.post_id}`}>{post.post_title}</Link></h1>
-            <div className='tags'>{mappedTags}</div>
+            <span className='detailInfo'>{post.post_updated_at}</span>
           </div>
           <div className='editDelete'>
-            {user.user_id===post.user_id?<Link to={`/edit/${post.id}`}><button>Edit</button></Link>:null}
+            {user.user_id===post.user_id?<Link to={`/edit/${post.post_id}`}><button className='editDeleteButton'>Edit</button></Link>:null}
             <br/>
-            {user.user_id===post.user_id?<button onClick={() => this.deletePost(post.post_id)}>Delete</button>:null}
+            {user.user_id===post.user_id?<button className='editDeleteButton' onClick={() => this.deletePost(post.post_id)}>Delete</button>:null}
           </div>
         </div>
       )

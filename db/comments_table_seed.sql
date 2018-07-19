@@ -4,5 +4,5 @@ create table comments (
   comment_created_at timestamp default now(),
   comment_updated_at timestamp default now(),
   user_id integer references users (user_id),
-  post_id integer references posts (post_id)
+  post_id integer references posts (post_id) on delete cascade
 );
