@@ -1,0 +1,35 @@
+.characterPage {
+  min-height: 87vh;
+  padding: 17px;
+  background: #EF3B36;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #FFFFFF, #EF3B36);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #FFFFFF, #EF3B36); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.characterImage {
+  box-shadow: 4px 4px red, 14px 14px 15px;
+  margin-bottom: 8px;
+}
+
+.characterName {
+  margin: 16px;
+  font-size: 25px;
+  font-family: impact;
+  font-style: italic;
+}
+
+.characterDescription {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: left;
+  font-size: 18px;
+  background-color: white;
+  font-family: 'Lucida Grande';
+  box-shadow: inset -3px -3px 10px;
+}
+
+.characterDescription div {
+    font-size: 21px;
+    margin-bottom: 6px;
+  }

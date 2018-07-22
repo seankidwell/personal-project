@@ -1,0 +1,58 @@
+.comicPage {
+  min-height: 87vh;
+  padding: 17px;
+  background: #EF3B36;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #FFFFFF, #EF3B36);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #FFFFFF, #EF3B36); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.comicCover {
+  box-shadow: 4px 4px red, 14px 14px 15px;
+  margin-bottom: 8px;
+}
+
+.comicTitle {
+  margin: 16px;
+  font-size: 25px;
+  font-family: impact;
+  font-style: italic;
+}
+
+.comicDescription {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: left;
+  font-size: 18px;
+  background-color: white;
+  font-family: 'Lucida Grande';
+  box-shadow: inset -3px -3px 10px;
+}
+
+.comicDescription div {
+  font-size: 21px;
+  margin-bottom: 6px;
+}
+
+.relatedCharactersContainer {
+  margin-top: 10px;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: left;
+  background-color: white;
+}
+
+.relatedCharacters {
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.comicCreatorsContainer {
+  margin-top: 10px;
+  padding: 10px;
+  text-align: left;
+}
+
+.comicCreator {
+  margin: 6px;
+}

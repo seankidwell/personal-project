@@ -1,34 +1,60 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import './Home.css';
 
-export default function Home() {
+export default class Home extends Component {
+  constructor() {
+    super();
+    this.state = {
+      comicIds: {
+        drStrange: 20165,
+        talesOfSuspense: 66351,
+        cloakAndDagger: 62791,
+        defenders: 20266
+      }
+    }
+  }
 
-  const urlEnd = '1009459?ts=1&apikey=abbb5ba81bf1d08c76fb30abc133b7fb&hash=5d8724bda4570f53616f63b789c6f6bd';
+  render() {
+    let {comicIds} = this.state;
+    return(
+      <div className='outside'>
+        <div className='ad'>
+          <img alt='Ant-Man' src='../../images/antman-and-wasp2.jpg'/>
+        </div>
+        <div className='home'>
+          <div className='homeContainer'>
+            <div className='hero-otw'>
+              Spider-Man
+            </div>
+            <div className='villain-otw'>
+              Scorpion
+            </div>
+            <div className='topics-of-interest'>
+              <div className='comicLink'>
+                
+                <Link to={`/comic/${comicIds.drStrange}`}><span>Doctor Strange (1974) #80</span></Link>
+              </div>
+              <div className='comicLink'>
+                
+                <Link to={`/comic/${comicIds.talesOfSuspense}`}><span>Tales of Suspense (1995) #1</span></Link>
+              </div>
+              <div className='comicLink'>
 
-  return (
-    <div className='outside'>
-      <div className='ad'>
-        <img alt='Ant-Man' src='../../images/antman-and-wasp2.jpg'/>
-      </div>
-      <div className='home'>
-        <div className='homeContainer'>
-        <div className='hero-otw'>
-          <img alt='spiderman' src='https://i.pinimg.com/originals/17/80/b9/1780b98d94b547fb3449d183c26d2bd5.jpg'/>
-          Spider-Man
-        </div>
-        <div className='villain-otw'>
-          Scorpion
-        </div>
-        <div className='topics-of-interest'>
-        <div>comics</div>
-        <div>comics</div>
-        <div>story line</div>
-        <div>some character</div>
-        <div>story line</div>
-        <div>some cahracter</div>
-        </div>
+                <Link to={`/comic/${comicIds.cloakAndDagger}`}><span>Cloak and Dagger (1985) #10</span></Link>
+              </div>
+              <div className='comicLink'>
+
+                <Link to={`/comic/${comicIds.defenders}`}><span>Defenders (1972) #102</span></Link>
+              </div>
+              <div>story line</div>
+              <div>some character</div>
+              <div>story line</div>
+              <div>some cahracter</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
