@@ -22,12 +22,6 @@ class Forum extends Component {
     })
   }
 
-  deletePost(id) {
-    axios.delete(`/api/forum/posts/${id}`).then(res => {
-      this.componentDidMount()
-    })
-  }
-
   goToPost(id) {
     this.props.history.push(`/post/${id}`)
   }
@@ -42,14 +36,11 @@ class Forum extends Component {
       return(
         <div key={post.post_id} className='forumPost'>
           <div className='titleTags'>
-            <span className='detailInfo'>-{post.user_name}-</span>
+            <div className='userNameAndDate'>
+              <span className='detailInfo'>-{post.user_name}-</span>
+              <span className='detailInfo'>{post.post_updated_at}</span>
+            </div>
             <h1><Link to={`/post/${post.post_id}`}>{post.post_title}</Link></h1>
-            <span className='detailInfo'>{post.post_updated_at}</span>
-          </div>
-          <div className='editDelete'>
-            {user.user_id===post.user_id?<Link to={`/edit/${post.post_id}`}><button className='editDeleteButton'>Edit</button></Link>:null}
-            <br/>
-            {user.user_id===post.user_id?<button className='editDeleteButton' onClick={() => this.deletePost(post.post_id)}>Delete</button>:null}
           </div>
         </div>
       )

@@ -12,6 +12,26 @@ module.exports = {
     }
   },
 
+  getPostsUsingUserId: (req, res) => {
+    const db = req.app.get("db");
+    let {userId} = req.params;
+    db.retrieve_posts_using_user_id([userId]).then(posts => {
+      posts.forEach(post => {
+        post.post_updated_at = moment(post.post_updated_at).format('L')
+      })
+      res.send(posts)
+    })
+  },
+
+  editProfile: (req, res) => {
+    const db = req.app.get("db");
+    let {userId} = req.params;
+    let {username, bio} = req.body;
+    db.update_profile([username, bio, userId]).then(() => {
+      res.end()
+    })
+  },
+
   getPostsWithUsers: (req, res) => {
     const db = req.app.get("db");
     db.retrieve_posts_with_users().then(posts => {
@@ -74,6 +94,14 @@ module.exports = {
     let {postId} = req.params;
     let {commentContent, userId} = req.body;
     db.create_comment([commentContent, userId, postId]).then(() => {
+      res.end()
+    })
+  },
+
+  deleteComment: (req, res) => {
+    const db = req.app.get("db");
+    let {commentId} = req.params;
+    db.delete_comment([commentId]).then(() => {
       res.end()
     })
   }

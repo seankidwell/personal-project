@@ -68,6 +68,10 @@ app.get("/api/logout", controller.logout);
 
 app.get("/api/user-data", controller.getUserData);
 
+app.get("/api/profile/posts/:userId", controller.getPostsUsingUserId);
+
+app.put("/api/profile/edit/:userId", controller.editProfile);
+
 app.get("/api/forum/posts", controller.getPostsWithUsers);
 app.get("/api/forum/post/:postId", controller.getPostWithUser);
 app.post("/api/forum/posts", controller.createPost);
@@ -75,6 +79,7 @@ app.put("/api/forum/posts/:id", controller.editPost);
 app.delete("/api/forum/posts/:id", controller.deletePost);
 
 app.get("/api/forum/comments/:postId", controller.getCommentsWithUsers);
+app.delete("/api/forum/comment/:commentId", controller.deleteComment);
 
 app.post("/api/forum/comments/:postId", controller.createComment);
 

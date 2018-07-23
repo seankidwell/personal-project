@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {getUserData} from '../../redux/users';
 import './PostPage.css';
 
@@ -47,7 +48,20 @@ class PostPage extends Component {
     this.props.history.push('/forum')
   }
 
+  deletePost(id) {
+    axios.delete(`/api/forum/posts/${id}`).then(res => {
+      this.props.history.push('/forum')
+    })
+  }
+
+  deleteComment(commentId) {
+    axios.delete(`/api/forum/comment/${commentId}`).then(res => {
+      this.componentDidMount();
+    })
+  }
+
   render() {
+    let {user} = this.props;
     let resultComments = this.state.comments.map((comment,i) => {
       return (
         <div className='comments' key={comment.comment_id}>
@@ -56,6 +70,10 @@ class PostPage extends Component {
             <span className='detailInfo'>{comment.comment_updated_at}</span>
           </div>
           <div>{comment.comment_content}</div>
+          <div className='editDelete'>
+            {user.user_id===comment.user_id?<Link to={`/edit/${this.state.postId}`}><button className='editDeleteButton'>Edit</button></Link>:null}
+            {user.user_id===comment.user_id?<button className='editDeleteButton' onClick={() => this.deleteComment(comment.comment_id)}>Delete</button>:null}
+            </div>
         </div>
       )
     })
@@ -70,8 +88,12 @@ class PostPage extends Component {
             </div>
             <h1>{this.state.postData.post_title}:</h1>
             {this.state.postData.post_content}
+            <div className='editDelete'>
+            {user.user_id===this.state.postData.user_id?<Link to={`/edit/${this.state.postId}`}><button className='editDeleteButton'>Edit</button></Link>:null}
+            {user.user_id===this.state.postData.user_id?<button className='editDeleteButton' onClick={() => this.deletePost(this.state.postId)}>Delete</button>:null}
+            </div>
           </div>
-          <textarea className='commentContent' placeholder='comment' value={this.state.commentContent} onChange={e => this.changeCommentContent(e.target.value)}></textarea>
+          <textarea className='commentContent' placeholder='comment' value={this.state.commentContent} onChange={e => this.changeCommentContent(e.target.value)}/>
           <br/>
           <button className='submitButton' onClick={() => this.createComment()}>Submit</button>
           {resultComments}

@@ -1,24 +1,7 @@
-.home {
+.editProfile {
   min-height: 87vh;
   padding: 17px;
   background: #EF3B36;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #FFFFFF, #EF3B36);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, #FFFFFF, #EF3B36); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-.homeContainer {
-  height: 100%;
-}
-
-.hero-otw {
-  height: 50px;
-}
-
-.hero-otw img {
-  height: 100%;
-  width: 100%;
-}
-
-.villain-otw {
-  height: 50px
 }

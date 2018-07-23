@@ -35,7 +35,7 @@ export default class Edit extends Component {
   editPost = async () => {
     let { title, content, tags} = this.state;
     let {id} = this.props.match.params;
-    await axios.put(`/api/forum/posts/${id}`, { title, content, tags});
+    await axios.put(`/api/forum/posts/${id}`, {title, content, tags});
     this.props.history.push(`/post/${id}`);
   };
 

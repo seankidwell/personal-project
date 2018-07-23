@@ -1,0 +1,44 @@
+.profilePage {
+  min-height: 87vh;
+  padding: 17px;
+  background: #EF3B36;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #FFFFFF, #EF3B36);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #FFFFFF, #EF3B36); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.basicUserInfo {
+  display: flex;
+}
+
+.picAndName {
+  margin-right: 18px;
+}
+
+.profileUsername {
+  margin-top: 15px
+}
+
+.bio {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: left;
+  font-size: 17px;
+  background-color: white;
+  font-family: 'Lucida Grande';
+  box-shadow: inset -3px -3px 8px;
+}
+
+.picAndName button {
+  margin: 5px;
+}
+
+.profilePagePic {
+  height: 125px;
+  box-shadow: 3px 3px red, 9px 9px 7px;
+}
+
+.postsCommentsButtons {
+  margin: 10px;
+  margin-top: 20px;
+}

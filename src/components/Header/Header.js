@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import Nav from '../Nav/Nav';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {getUserData} from '../../redux/users';
 import './Header.css';
 
 class Header extends Component {
   constructor() {
     super();
+    
   }
 
   componentDidMount() {
@@ -32,7 +34,10 @@ class Header extends Component {
         <img alt='marvel-logo' className='marvel-logo' height='73' width='138' src='http://1000logos.net/wp-content/uploads/2017/08/Marvel-Logo.png'/>
         <div className='nav-login'>
           <Nav/>
-          <div className='login'>
+          <div className='profile/login'>
+          {this.props.user.user_id?
+          <Link to={`/profile/${this.props.user.user_id}`}><button>Profile</button></Link>:
+          null}
           {this.props.user.user_id?
           <a href='http://localhost:3090/api/logout'><button className='login/out' onClick={this.logout}>Logout</button></a>:
           <button className='login/out' onClick={this.login}>Login</button>}

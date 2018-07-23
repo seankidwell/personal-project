@@ -17,7 +17,8 @@
   border-radius: 10px;
   margin-bottom: 5px;
   padding: 10px;
-  background-color: rgb(224, 224, 224);
+  background-color: white;
+  box-shadow: 4px 4px 5px;
 }
 
 .commentContent {
@@ -35,7 +36,8 @@
   border-radius: 5px;
   margin-bottom: 8px;
   padding: 7px;
-  background-color: rgb(224, 224, 224)
+  background-color: white;
+  box-shadow: 4px 4px 5px;
 }
 
 .userNameAndDate {
@@ -54,6 +56,15 @@
   margin-top: 5px;
 }
 
+.editDelete {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.editDeleteButton {
+  margin-top: 5px;
+}
+
 .submitButton {
   background-color: red;
   color: white;
@@ -63,4 +74,5 @@
   border: 2px solid black;
   margin-bottom: 18px;
   margin-top: 5px;
+  box-shadow: inset -1px -1px 3px black;
 }
