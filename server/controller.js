@@ -12,6 +12,14 @@ module.exports = {
     }
   },
 
+  getUserInfo: (req, res) => {
+    const db = req.app.get("db");
+    let {userId} = req.params;
+    db.retrieve_user([userId]).then(info => {
+      res.send(info)
+    })
+  },
+
   getPostsUsingUserId: (req, res) => {
     const db = req.app.get("db");
     let {userId} = req.params;
@@ -20,6 +28,49 @@ module.exports = {
         post.post_updated_at = moment(post.post_updated_at).format('L')
       })
       res.send(posts)
+    })
+  },
+
+  getPostsWithComments: (req, res) => {
+    const db = req.app.get("db");
+    let {userId} = req.params;
+    db.retrieve_posts_with_comments([userId]).then(data => {
+      let posts_obj = {};
+      data.map(post => {
+        if (posts_obj[post.post_id] === undefined) {
+          posts_obj[post.post_id] = {
+            post_id: post.post_id,
+            post_title: post.post_title,
+            post_content: post.post_content,
+            tags: post.tags,
+            post_created_at: post.post_created_at,
+            post_updated_at: post.post_updated_at,
+            user_id: post.user_id,
+            user_name: post.user_name,
+            comments: [{
+              comment_id: post.comment_id,
+              comment_content: post.comment_content,
+              comment_created_at: post.comment_created_at,
+              comment_updated_at: post.comment_updated_at
+            }]
+          }
+        } else {
+          posts_obj[post.post_id].comments.push({
+            comment_id: post.comment_id,
+            comment_content: post.comment_content,
+            comment_created_at: post.comment_created_at,
+            comment_updated_at: post.comment_updated_at
+          })
+        }
+      })
+      let postArray = [];
+      for (var key in posts_obj) {
+        postArray.push(posts_obj[key])
+      }
+      postArray.forEach(post => {
+        post.post_updated_at = moment(post.post_updated_at).format('L')
+      })
+      res.send(postArray)
     })
   },
 

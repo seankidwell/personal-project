@@ -29,8 +29,9 @@
   border-radius: 25px;
   border: 2px solid black;
   box-shadow: inset -1px -1px 5px black;
-  position: sticky;
-  bottom: 0;
+  position: fixed;
+  bottom: 40px;
+  right: 127px;
 }
 
 .detailInfo {

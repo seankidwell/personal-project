@@ -28,6 +28,14 @@ class Header extends Component {
     axios.get('/api/logout')
   }
 
+  openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+  }
+
   render() {
     return (
       <div className='header'>
@@ -43,6 +51,14 @@ class Header extends Component {
           <button className='login/out' onClick={this.login}>Login</button>}
           </div>
         </div>
+        {/* <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <span>Home</span>
+          <span>Forum</span>
+          <span>Profile</span>
+          <span>Logout</span>
+        </div>
+        <span onclick={() => this.openNav()}>&#9776; open</span> */}
       </div>
     )
   }

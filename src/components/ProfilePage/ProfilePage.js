@@ -8,25 +8,53 @@ class ProfilePage extends Component {
   constructor() {
     super();
     this.state = {
+      username: '',
+      bio: '',
+      image: '',
       posts: [],
       comments: [],
-      postButton: true
+      postButton: true,
+      commentButton: false
     }
   }
 
   componentDidMount() {
+    axios.get(`/api/profile/info/${this.props.match.params.userId}`).then(res => {
+      let {user_name, user_pic, bio} = res.data[0];
+      this.setState({
+        username: user_name,
+        bio: bio,
+        image: user_pic
+      })
+    })
     axios.get(`/api/profile/posts/${this.props.match.params.userId}`).then(res => {
       this.setState({posts: res.data})
     })
+    axios.get(`/api/posts/comments/${this.props.match.params.userId}`).then(res => {
+      this.setState({comments: res.data})
+    })
   }
 
+  changeToPosts() {
+    if (this.state.postButton===false && this.state.commentButton===true) {
+      this.setState({postButton: !this.state.postButton, commentButton: !this.state.commentButton})
+    }
+  }
+
+  changeToComments() {
+    if (this.state.commentButton===false && this.state.postButton===true) {
+      this.setState({postButton: !this.state.postButton, commentButton: !this.state.commentButton})
+    }
+    
+  }
+ 
   render() {
     let listOfPosts = this.state.posts.map((post,i) => {
       return (
         <div key={post.post_id} className='forumPost'>
           <div className='titleTags'>
             <div className='userNameAndDate'>
-              <span className='detailInfo'>-{this.props.user.user_name}-</span>
+              <span className='detailInfo'>-{this.state.username}-</span>
               <span className='detailInfo'>{post.post_updated_at}</span>
             </div>
             <h1><Link to={`/post/${post.post_id}`}>{post.post_title}</Link></h1>
@@ -34,21 +62,46 @@ class ProfilePage extends Component {
         </div>
       )
     })
+    
+    let listOfPostsWithComments = this.state.comments.map((post,i) => {
+      let comments = post.comments.map((comment,i) => {
+        return (
+          <div className='profileComment' key={i}>
+            <span>{comment.comment_content}</span>
+          </div>
+        )
+      })
+      return (
+        <div className='profilePostsWithComments' key={i}>
+          <div className='titleTags'>
+            <div className='userNameAndDate'>
+              <span className='detailInfo'>-{post.user_name}-</span>
+              <span className='detailInfo'>{post.post_updated_at}</span>
+            </div>
+            <h1><Link to={`/post/${post.post_id}`}>{post.post_title}</Link></h1>
+          </div>
+          {comments}
+        </div>
+      )
+    })
+
     return (
       <div className='profilePage'>
         <div className='basicUserInfo'>
           <div className='picAndName'>
-            <img className='profilePagePic' alt='profilePic' src={this.props.user.user_pic}/>
-            <div className='profileUsername'>{this.props.user.user_name}</div>
+            <img className='profilePagePic' alt='profilePic' src={this.state.image}/>
+            <div className='profileUsername'>{this.state.username}</div>
             <Link to={`/profile/edit/${this.props.match.params.userId}`}><button>Edit Info</button></Link>
           </div>
           <div className='bio'>
-            {this.props.user.bio}
+            {this.state.bio}
           </div>
         </div>
-        <div className='postsCommentsButtons'><button value={this.postButton}>Posts</button><button>Comments</button></div>
-        <div className='profilePosts'>{listOfPosts}</div>
-        <div className='profileComments'></div>
+        <div className='postsCommentsButtons'><button onClick={() => this.changeToPosts()}>Posts</button><button onClick={() => this.changeToComments()}>Comments</button></div>
+        {this.state.postButton===true && this.state.commentButton===false?
+        <div className='profilePosts'>{listOfPosts}</div>:
+        <div className='profileComments'>{listOfPostsWithComments}</div>
+        }
       </div>
     )
   }

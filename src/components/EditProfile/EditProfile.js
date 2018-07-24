@@ -14,10 +14,12 @@ class EditProfile extends Component {
   }
 
   componentDidMount() {
-    let {user_name, bio} = this.props.user;
-    this.setState({
-      username: user_name,
-      bio: bio
+    axios.get(`/api/profile/info/${this.props.match.params.userId}`).then(res => {
+      let {user_name, user_pic, bio} = res.data[0];
+      this.setState({
+        username: user_name,
+        bio: bio
+      })
     })
   }
 
@@ -39,18 +41,20 @@ class EditProfile extends Component {
   render() {
     return (
       <div className='editProfile'>
-        <div>Image Select</div>
         <div>
+          <span>Image</span>
+        </div>
+        <div className='usernameSection'>
           <span>Username</span>
           <br/>
           <textarea className='usernameContent' placeholder='text' value={this.state.username} onChange={e => this.changeUsernameContent(e.target.value)}/>
         </div>
-        <div>
+        <div className='bioSection'>
           <span>Bio</span>
           <br/>
           <textarea className='bioContent' placeholder='text' value={this.state.bio} onChange={e => this.changeBioContent(e.target.value)}/>
         </div>
-        <button onClick={this.confirm}>Confirm</button>
+        <button className='profileConfirm' onClick={this.confirm}>Confirm</button>
       </div>
     )
   }

@@ -68,7 +68,9 @@ app.get("/api/logout", controller.logout);
 
 app.get("/api/user-data", controller.getUserData);
 
+app.get("/api/profile/info/:userId", controller.getUserInfo);
 app.get("/api/profile/posts/:userId", controller.getPostsUsingUserId);
+app.get("/api/posts/comments/:userId", controller.getPostsWithComments);
 
 app.put("/api/profile/edit/:userId", controller.editProfile);
 

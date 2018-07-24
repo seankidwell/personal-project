@@ -10,15 +10,101 @@
   height: 100%;
 }
 
-.hero-otw {
-  height: 50px;
+.characterSearch {
+  border: 1px solid black;
+  margin: 0px 70px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  font-size: 17px;
+  font-family: 'Lucida Grande';
+  box-shadow: 4px 4px 8px;
 }
 
-.hero-otw img {
-  height: 100%;
-  width: 100%;
+.characterSearch div {
+  margin-bottom: 8px;
+}
+
+.characterSearch button {
+  background-color: red;
+  color: white;
+  margin-left: 5px;
+  border-radius: 15px;
+  border: 2px solid black;
+  box-shadow: inset -1px -1px 3px black;
+}
+
+.characterSearch input {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2px 8px;
+}
+
+.otw {
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between
+}
+
+.hero-otw {
+  height: 170px;
+  width: 135px;
+  background-color: darkred;
 }
 
 .villain-otw {
-  height: 50px
+  height: 170px;
+  width: 135px;
+  background-color: darkred;
+}
+
+.comicBooks {
+  border: 1px solid black;
+  min-height: 20vh;
+  margin-top: 12px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  font-size: 17px;
+  font-family: 'Lucida Grande';
+  box-shadow: inset -3px -3px 8px;
+  text-align: left;
+}
+
+.comicLink {
+  margin: 4px 12px;
+}
+
+.comicCharacters {
+  border: 1px solid black;
+  margin: 12px 0px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  font-size: 17px;
+  font-family: 'Lucida Grande';
+  box-shadow: inset -3px -3px 8px;
+}
+
+.characterLinks {
+  max-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.characterLink {
+  margin: 4px;
+}
+
+.homeTitle {
+  margin-bottom: 8px;
+  font-size: 21px;
+  text-align: left;
+}
+
+.years {
+  margin: 0px 5px;
+  margin-bottom: 4px;
 }
