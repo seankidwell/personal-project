@@ -9,6 +9,8 @@ require("dotenv").config();
 const app = express();
 const port = 3090;
 
+app.use(express.static(__dirname+'/../build'));
+
 let {
   REACT_APP_CLIENT_ID,
   CLIENT_SECRET,

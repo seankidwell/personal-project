@@ -34,7 +34,7 @@ class ProfilePage extends Component {
       this.setState({comments: res.data})
     })
   }
-  
+
   changeToPosts() {
     if (this.state.postButton===false && this.state.commentButton===true) {
       this.setState({postButton: !this.state.postButton, commentButton: !this.state.commentButton})
