@@ -45,13 +45,11 @@ class EditProfile extends Component {
           <span>Image</span>
         </div>
         <div className='usernameSection'>
-          <span>Username</span>
-          <br/>
+          <div>Username:</div>
           <textarea className='usernameContent' placeholder='text' value={this.state.username} onChange={e => this.changeUsernameContent(e.target.value)}/>
         </div>
         <div className='bioSection'>
-          <span>Bio</span>
-          <br/>
+          <div>Bio:</div>
           <textarea className='bioContent' placeholder='text' value={this.state.bio} onChange={e => this.changeBioContent(e.target.value)}/>
         </div>
         <button className='profileConfirm' onClick={this.confirm}>Confirm</button>

@@ -7,26 +7,46 @@
 }
 
 .usernameSection {
+  width: 172px;
   margin: 20px;
+  display: inline-block
+}
+
+.usernameSection div {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: left;
+  font-size: 20px;
 }
 
 .bioSection {
+  width: 290px;
   margin: 20px;
+  display: inline-block;
+}
+
+.bioSection div {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: left;
+  font-size: 20px;
 }
 
 .usernameContent {
   resize: none;
+  border: 1px solid black;
   height: 21px;
 }
 
 .bioContent {
   resize: none;
+  border: 1px solid black;
   height: 168px;
   width: 290px;
 }
 
 .profileConfirm {
   background-color: red;
+  font-size: 17px;
+  padding: 2px 8px;
   color: white;
   margin-left: 5px;
   border-radius: 15px;

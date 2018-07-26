@@ -29,7 +29,14 @@ export default class Home extends Component {
   }
 
   render() {
-    let { comicIds } = this.state;
+    let { comicIds, search } = this.state;
+    function upperCase(str) {
+      var splitStr = str.toLowerCase().split(' ');
+      for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+      }
+      return splitStr.join(' ');
+    }
     return (
       <div className="home">
         <div className="homeContainer">
@@ -39,7 +46,7 @@ export default class Home extends Component {
               placeholder="search"
               onChange={e => this.changeSearch(e.target.value)}
             />
-            <Link to={`/character/${encodeURIComponent(this.state.search)}`}><button>Go</button></Link>
+            <Link to={`/character/${encodeURIComponent(upperCase(search))}`}><button>Go</button></Link>
           </div>
           <div className='otw'>
             <div className="hero-otw">
@@ -60,6 +67,7 @@ export default class Home extends Component {
           <div className="topics-of-interest">
           <div className="comicCharacters">
               <div className='homeTitle'>Characters</div>
+              <div className='characterTitle'>Heros</div>
               <div className='characterLinks'>
                 <div className="characterLink">
                   <Link to={`/character/wolverine`}>
@@ -77,11 +85,6 @@ export default class Home extends Component {
                   </Link>
                 </div>
                 <div className="characterLink">
-                  <Link to={`/character/silver%20sable`}>
-                    <span>Silver Sable</span>
-                  </Link>
-                </div>
-                <div className="characterLink">
                   <Link to={`/character/daredevil`}>
                     <span>Daredevil</span>
                   </Link>
@@ -96,10 +99,33 @@ export default class Home extends Component {
                     <span>Ben Reilly</span>
                   </Link>
                 </div>
+                <div className="characterLink">
+                  <Link to={`/character/storm`}>
+                    <span>Storm</span>
+                  </Link>
+                </div>
+                <div className="characterLink">
+                  <Link to={`/character/wiccan`}>
+                    <span>Wiccan</span>
+                  </Link>
+                </div>
+              </div>
+              <div className='characterTitle'>Villains</div>
+              <div className='characterLinks'>
+                <div className="characterLink">
+                  <Link to={`/character/silver%20sable`}>
+                    <span>Silver Sable</span>
+                  </Link>
+                </div>
+                <div className="characterLink">
+                  <Link to={`/character/Mysterio`}>
+                    <span>Mysterio</span>
+                  </Link>
+                </div>
               </div>
             </div>
             <div className="comicBooks">
-              <div className='homeTitle'>Comics</div>
+              <div className='homeTitle'>Popular Comics over the Years</div>
               <div className='years'>60's-80's</div>
               <div className="comicLink">
                 <Link to={`/comic/${comicIds.fantasticFour}`}>

@@ -4,6 +4,8 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {getUserData} from '../../redux/users';
+import marvelLogo from '../../images/marvel-logo.jpeg';
+import backArrow from '../../images/backArrow.png';
 import './Header.css';
 
 class Header extends Component {
@@ -20,7 +22,7 @@ class Header extends Component {
 
   login = () => {
     let {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID} = process.env;
-    let redirectUri = encodeURIComponent(`http://localhost:3090/auth/callback`);
+    let redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
     window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`;
   }
 
@@ -29,36 +31,41 @@ class Header extends Component {
   }
 
   openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("mySidenav").style.width = "126px";
+    document.getElementById("mySidenav").style.paddingLeft = "4px";
   }
 
   closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("mySidenav").style.paddingLeft = "0";
+  }
+
+  goBack() {
+    this.props.history.goBack();
   }
 
   render() {
     return (
       <div className='header'>
-        <img alt='marvel-logo' className='marvel-logo' height='73' width='138' src='http://1000logos.net/wp-content/uploads/2017/08/Marvel-Logo.png'/>
-        <div className='nav-login'>
-          <Nav/>
-          <div className='profile/login'>
+        <img alt='marvel-logo' className='marvel-logo' height='50' width='138' src={marvelLogo}/>
+        <div id="mySidenav" className="sidenav">
+          <a href="javascript:void(0)" className="closebtn" onClick={() => this.closeNav()}>&times;</a>
           {this.props.user.user_id?
-          <Link to={`/profile/${this.props.user.user_id}`}><button>Profile</button></Link>:
+          <Link to={`/profile/${this.props.user.user_id}`} onClick={() => this.closeNav()}><img alt='profilePicture' className='headerProfilePic' src={this.props.user.user_pic}/></Link>:
+          null
+          }
+          <div className='profile-login'>
+          {this.props.user.user_id?
+          <Link to={`/profile/${this.props.user.user_id}`} onClick={() => this.closeNav()}>Profile</Link>:
           null}
           {this.props.user.user_id?
-          <a href='http://localhost:3090/api/logout'><button className='login/out' onClick={this.logout}>Logout</button></a>:
-          <button className='login/out' onClick={this.login}>Login</button>}
+          <a href={`${window.origin}/api/logout`} onClick={this.logout}>Logout</a>:
+          <a onClick={this.login}>Login</a>}
           </div>
+          <Nav closeNav={this.closeNav}/>
         </div>
-        {/* <div id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <span>Home</span>
-          <span>Forum</span>
-          <span>Profile</span>
-          <span>Logout</span>
-        </div>
-        <span onclick={() => this.openNav()}>&#9776; open</span> */}
+        <span className='mobileMenu' onClick={() => this.openNav()}>&#9776;</span>
+        <img alt='back' className='backArrow' src={backArrow} onClick={() => this.goBack()}/>
       </div>
     )
   }

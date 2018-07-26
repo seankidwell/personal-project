@@ -20,7 +20,7 @@ export default (
     <Route path={'/post/:id'} component={PostPage}/>
     <Route path={'/edit/:id'} component={Edit}/>
     <Route path={'/comic/:comicId'} component={ComicPage}/>
-    <Route path={'/character/:characterId'} component={CharacterPage}/>
+    <Route path={'/character/:characterName'} component={CharacterPage}/>
     <Route path={'/store'} />
   </Switch>
 )

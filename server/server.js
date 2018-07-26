@@ -55,11 +55,11 @@ app.get("/auth/callback", async (req, res) => {
   let userExists = await db.find_user([sub]);
   if (userExists[0]) {
     req.session.user = userExists[0];
-    res.redirect("http://localhost:3000/#/");
+    res.redirect(`${process.env.FRONTEND_DOMAIN}/#/`);
   } else {
     db.create_user([sub, name, picture]).then(createdUser => {
       req.session.user = createdUser[0];
-      res.redirect("http://localhost:3000/#/");
+      res.redirect(`${process.env.FRONTEND_DOMAIN}/#/`);
     });
   }
 });
@@ -71,6 +71,7 @@ app.get("/api/user-data", controller.getUserData);
 app.get("/api/profile/info/:userId", controller.getUserInfo);
 app.get("/api/profile/posts/:userId", controller.getPostsUsingUserId);
 app.get("/api/posts/comments/:userId", controller.getPostsWithComments);
+app.get("/api/profile/userId/:userName", controller.getUserId)
 
 app.put("/api/profile/edit/:userId", controller.editProfile);
 

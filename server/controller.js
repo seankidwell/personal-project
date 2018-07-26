@@ -3,7 +3,7 @@ module.exports = {
 
   logout: (req, res) => {
     req.session.destroy();
-    res.redirect('http://localhost:3000/#/')
+    res.redirect(`${process.env.FRONTEND_DOMAIN}/#/`)
   },
 
   getUserData: (req, res) => {
@@ -71,6 +71,14 @@ module.exports = {
         post.post_updated_at = moment(post.post_updated_at).format('L')
       })
       res.send(postArray)
+    })
+  },
+
+  getUserId: (req, res) => {
+    const db = req.app.get("db");
+    let {userName} = req.params;
+    db.retrieve_user_id([userName]).then(id => {
+      res.send(id)
     })
   },
 

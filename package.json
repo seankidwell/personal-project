@@ -24,7 +24,14 @@
     "eject": "react-scripts eject"
   },
   "main": "./server/server.js",
-  "proxy": "http://localhost:3090",
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3090"
+    },
+    "/auth": {
+      "target": "http://localhost:3090"
+    }
+  },
   "nodemonConfig": {
     "ignore": [
       "src/*"

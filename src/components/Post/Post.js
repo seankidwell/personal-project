@@ -40,17 +40,23 @@ class Post extends Component {
     return (
       <div className="postCreator">
         <div className="postContainer">
-          <textarea
-            className="titleArea"
-            placeholder="title"
-            onChange={e => this.changeTitle(e.target.value)}
-          />
+          <div className='postTitleSection'>
+            <div>Title</div>
+            <textarea
+              className="titleArea"
+              placeholder="title"
+              onChange={e => this.changeTitle(e.target.value)}
+            />
+          </div>
           <br />
-          <textarea
-            className="contentArea"
-            placeholder="content"
-            onChange={e => this.changeContent(e.target.value)}
-          />
+          <div className='postContentSection'>
+            <div>Content</div>
+            <textarea
+              className="contentArea"
+              placeholder="content"
+              onChange={e => this.changeContent(e.target.value)}
+            />
+          </div>
           <br />
           {this.state.user_id ? (
             <button className='submitButton' onClick={this.createPost}>Submit</button>

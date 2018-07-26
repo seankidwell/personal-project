@@ -54,6 +54,11 @@ class PostPage extends Component {
     })
   }
 
+  allowEdit(comment) {
+    comment.edit=!comment.edit
+    console.log(comment.edit)
+  }
+
   deleteComment(commentId) {
     axios.delete(`/api/forum/comment/${commentId}`).then(res => {
       this.componentDidMount();
@@ -63,15 +68,16 @@ class PostPage extends Component {
   render() {
     let {user} = this.props;
     let resultComments = this.state.comments.map((comment,i) => {
+      console.log(this.state.comments)
       return (
         <div className='comments' key={comment.comment_id}>
           <div className='userNameAndDate'>
-            <span className='detailInfo'>-{comment.user_name}-</span>
+            <span className='detailInfo'><Link to={`/profile/${comment.user_id}`}>-{comment.user_name}-</Link></span>
             <span className='detailInfo'>{comment.comment_updated_at}</span>
           </div>
-          <div>{comment.comment_content}</div>
+          <div contentEditable={comment.edit}>{comment.comment_content}</div>
           <div className='editDelete'>
-            {user.user_id===comment.user_id?<Link to={`/edit/${this.state.postId}`}><button className='editDeleteButton'>Edit</button></Link>:null}
+            {user.user_id===comment.user_id?<button className='editDeleteButton' onClick={() => this.allowEdit(comment)}>Edit</button>:null}
             {user.user_id===comment.user_id?<button className='editDeleteButton' onClick={() => this.deleteComment(comment.comment_id)}>Delete</button>:null}
             </div>
         </div>
@@ -83,7 +89,7 @@ class PostPage extends Component {
           <button className='backToPosts' onClick={() => this.back()}>Back to Posts</button>
           <div className='post'>
             <div className='userNameAndDate'>
-              <span className='detailInfo'>-{this.state.postData.user_name}-</span>
+              <span className='detailInfo'><Link to={`/profile/${this.state.postData.user_id}`}>-{this.state.postData.user_name}-</Link></span>
               <span className='detailInfo'>{this.state.postData.post_updated_at}</span>
             </div>
             <h1>{this.state.postData.post_title}:</h1>

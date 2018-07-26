@@ -37,7 +37,7 @@ class Forum extends Component {
         <div key={post.post_id} className='forumPost'>
           <div className='titleTags'>
             <div className='userNameAndDate'>
-              <span className='detailInfo'>-{post.user_name}-</span>
+              <span className='detailInfo'><Link to={`/profile/${post.user_id}`}>-{post.user_name}-</Link></span>
               <span className='detailInfo'>{post.post_updated_at}</span>
             </div>
             <h1><Link to={`/post/${post.post_id}`}>{post.post_title}</Link></h1>
@@ -48,12 +48,10 @@ class Forum extends Component {
 
     return (
       <div className='forum'>
-        <div className='posts'>
-
-          {mappedPosts}
-
+          <div className='forumPosts'>
+            {mappedPosts}
+          </div>
           {this.props.user.user_id?<Link to={'/post'}><button className='createPost'>Create Post</button></Link>:null}
-        </div>
       </div>
     )
   }

@@ -34,7 +34,7 @@ class ProfilePage extends Component {
       this.setState({comments: res.data})
     })
   }
-
+  
   changeToPosts() {
     if (this.state.postButton===false && this.state.commentButton===true) {
       this.setState({postButton: !this.state.postButton, commentButton: !this.state.commentButton})
@@ -45,7 +45,11 @@ class ProfilePage extends Component {
     if (this.state.commentButton===false && this.state.postButton===true) {
       this.setState({postButton: !this.state.postButton, commentButton: !this.state.commentButton})
     }
-    
+  }
+
+  getUserId = async (id) => {
+    let userId = await axios.get(`/api/profile/userId/${id}`)
+    return userId;
   }
  
   render() {
@@ -54,7 +58,7 @@ class ProfilePage extends Component {
         <div key={post.post_id} className='forumPost'>
           <div className='titleTags'>
             <div className='userNameAndDate'>
-              <span className='detailInfo'>-{this.state.username}-</span>
+              <span className='detailInfo'><Link to={`/profile/${this.props.match.params.userId}`}>-{this.state.username}-</Link></span>
               <span className='detailInfo'>{post.post_updated_at}</span>
             </div>
             <h1><Link to={`/post/${post.post_id}`}>{post.post_title}</Link></h1>
@@ -75,7 +79,9 @@ class ProfilePage extends Component {
         <div className='profilePostsWithComments' key={i}>
           <div className='titleTags'>
             <div className='userNameAndDate'>
-              <span className='detailInfo'>-{post.user_name}-</span>
+              {post.user_id=this.getUserId(post.user_name)}
+              {console.log(post)}
+              <span className='detailInfo'><Link to={`/profile/${post.user_id}`}>-{post.user_name}-</Link></span>
               <span className='detailInfo'>{post.post_updated_at}</span>
             </div>
             <h1><Link to={`/post/${post.post_id}`}>{post.post_title}</Link></h1>
@@ -91,7 +97,10 @@ class ProfilePage extends Component {
           <div className='picAndName'>
             <img className='profilePagePic' alt='profilePic' src={this.state.image}/>
             <div className='profileUsername'>{this.state.username}</div>
-            <Link to={`/profile/edit/${this.props.match.params.userId}`}><button>Edit Info</button></Link>
+            {this.props.user.user_id==this.props.match.params.userId?
+            <Link to={`/profile/edit/${this.props.match.params.userId}`}><button>Edit Info</button></Link>:
+            null
+            }
           </div>
           <div className='bio'>
             {this.state.bio}
