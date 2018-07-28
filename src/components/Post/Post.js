@@ -58,9 +58,7 @@ class Post extends Component {
             />
           </div>
           <br />
-          {this.state.user_id ? (
             <button className='submitButton' onClick={this.createPost}>Submit</button>
-          ) : null}
         </div>
       </div>
     );

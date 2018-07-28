@@ -46,16 +46,6 @@
   margin-bottom: 6px;
 }
 
-.backToPosts {
-  background-color: red;
-  color: white;
-  font-size: 17px;
-  padding: 2px 8px;
-  border: 2px solid black;
-  margin-bottom: 18px;
-  margin-top: 5px;
-}
-
 .editDelete {
   display: flex;
   justify-content: flex-end;
@@ -75,4 +65,39 @@
   margin-bottom: 18px;
   margin-top: 5px;
   box-shadow: inset -1px -1px 3px black;
+}
+
+.commentMessage {
+  box-shadow: 0px 10px 45px
+}
+
+#postPageTitle {
+  border: 1px dotted black;
+  resize: none;
+  font-family: sans-serif;
+  font-size: 100%;
+  width: 100%;
+  height: 24px;
+  font-weight: bold;
+  margin-top: -1px;
+}
+
+#postPageContent {
+  border: 1px dotted black;
+  resize: none;
+  font-family: sans-serif;
+  font-size: 100%;
+  width: 100%;
+  height: 24px;
+  margin-top: -3px;
+}
+
+.postPageProfilePost h1 {
+  padding: 3px;
+}
+
+.postPageProfilePost div {
+    padding: 3px;
+    padding-top: 5px;
+    padding-bottom: 7px;
 }

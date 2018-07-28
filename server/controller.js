@@ -45,7 +45,7 @@ module.exports = {
             tags: post.tags,
             post_created_at: post.post_created_at,
             post_updated_at: post.post_updated_at,
-            user_id: post.user_id,
+            user_id: post.the_user_id,
             user_name: post.user_name,
             comments: [{
               comment_id: post.comment_id,
@@ -74,19 +74,11 @@ module.exports = {
     })
   },
 
-  getUserId: (req, res) => {
-    const db = req.app.get("db");
-    let {userName} = req.params;
-    db.retrieve_user_id([userName]).then(id => {
-      res.send(id)
-    })
-  },
-
   editProfile: (req, res) => {
     const db = req.app.get("db");
     let {userId} = req.params;
-    let {username, bio} = req.body;
-    db.update_profile([username, bio, userId]).then(() => {
+    let {editedUsername, editedBio} = req.body;
+    db.update_profile([editedUsername, editedBio, userId]).then(() => {
       res.end()
     })
   },
@@ -122,9 +114,9 @@ module.exports = {
 
   editPost: (req, res) => {
     const db = req.app.get("db");
-    let {title, content, tags} = req.body;
+    let {editedTitle, editedPost, tags} = req.body;
     let {id} = req.params;
-    db.update_post([title, content, tags, id]).then(() => {
+    db.update_post([editedTitle, editedPost, tags, id]).then(() => {
       res.end()
     })
   },
@@ -153,6 +145,15 @@ module.exports = {
     let {postId} = req.params;
     let {commentContent, userId} = req.body;
     db.create_comment([commentContent, userId, postId]).then(() => {
+      res.end()
+    })
+  },
+
+  editComment: (req, res) => {
+    const db = req.app.get("db");
+    let {commentId} = req.params;
+    let {commentContent} = req.body;
+    db.edit_comment([commentContent, commentId]).then(() => {
       res.end()
     })
   },

@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getUserData} from '../../redux/users';
+import customClass from 'animate.css';
+import swal from 'sweetalert2';
 import './Forum.css';
 
 class Forum extends Component {
@@ -26,6 +28,19 @@ class Forum extends Component {
     this.props.history.push(`/post/${id}`)
   }
 
+  signUpMessage() {
+    swal({
+      title: 'Whoops!',
+      text: 'You must be logged in before you can create a post',
+      animation: false,
+      type: 'error',
+      width: 290,
+      confirmButtonColor: '#ed1d24',
+      confirmButtonText: 'Got it',
+      customClass: 'animated bounceInUp postMessage'
+    })
+  }
+
   render() {
     let {user} = this.props;
     let {posts} = this.state;
@@ -45,13 +60,15 @@ class Forum extends Component {
         </div>
       )
     })
-
     return (
       <div className='forum'>
           <div className='forumPosts'>
             {mappedPosts}
           </div>
-          {this.props.user.user_id?<Link to={'/post'}><button className='createPost'>Create Post</button></Link>:null}
+          {this.props.user.user_id?
+          <Link to={'/post'}><button className='createPost'>Create Post</button></Link>:
+          <button className='createPost' onClick={() => this.signUpMessage()}>Create Post</button>
+          }
       </div>
     )
   }

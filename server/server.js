@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const massive = require("massive");
 const axios = require("axios");
+const aws = require('aws-sdk')
 const controller = require("./controller");
 require("dotenv").config();
 
@@ -30,6 +31,46 @@ app.use(
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);
+});
+
+const {
+    S3_BUCKET,
+    AWS_ACCESS_KEY_ID,
+    AWS_SECRET_ACCESS_KEY
+} = process.env
+
+app.get('/sign-s3', (req, res) => {
+  console.log('get hit')
+
+  aws.config = {
+    region: 'us-west-1',
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY
+  }
+  
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    };
+
+    return res.send(returnData)
+  });
 });
 
 app.get("/auth/callback", async (req, res) => {
@@ -73,7 +114,6 @@ app.get("/api/user-data", controller.getUserData);
 app.get("/api/profile/info/:userId", controller.getUserInfo);
 app.get("/api/profile/posts/:userId", controller.getPostsUsingUserId);
 app.get("/api/posts/comments/:userId", controller.getPostsWithComments);
-app.get("/api/profile/userId/:userName", controller.getUserId)
 
 app.put("/api/profile/edit/:userId", controller.editProfile);
 
@@ -85,6 +125,7 @@ app.delete("/api/forum/posts/:id", controller.deletePost);
 
 app.get("/api/forum/comments/:postId", controller.getCommentsWithUsers);
 app.delete("/api/forum/comment/:commentId", controller.deleteComment);
+app.put("/api/forum/comment/:commentId", controller.editComment);
 
 app.post("/api/forum/comments/:postId", controller.createComment);
 

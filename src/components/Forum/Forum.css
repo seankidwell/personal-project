@@ -47,3 +47,7 @@
   font-size: 13px;
   color: rgb(71, 71, 71)
 }
+
+.postMessage {
+  box-shadow: 0px 10px 45px;
+}

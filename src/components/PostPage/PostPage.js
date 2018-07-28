@@ -3,6 +3,9 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {getUserData} from '../../redux/users';
+import PostPageComment from '../PostPageComment/PostPageComment';
+import customClass from 'animate.css'
+import swal from 'sweetalert2';
 import './PostPage.css';
 
 class PostPage extends Component {
@@ -11,16 +14,21 @@ class PostPage extends Component {
     this.state = {
       postData: {},
       postId: null,
+      postEdit: false,
+      editedTitle: '',
+      editedPost: '',
       userId: null,
       comments: [],
       commentContent: ''
     };
   }
 
-  componentDidMount = async () => {
+  pageLoad = async () => {
     let {data: [postData]} = await axios.get(`/api/forum/post/${this.props.match.params.id}`)
     this.setState({
       postData: postData,
+      editedTitle: postData.post_title,
+      editedPost: postData.post_content,
       postId: this.props.match.params.id
       })
     axios.get(`/api/forum/comments/${this.props.match.params.id}`).then(res => {
@@ -37,6 +45,10 @@ class PostPage extends Component {
     this.setState({commentContent: value})
   }
 
+  componentDidMount() {
+    this.pageLoad();
+  }
+
   async createComment() {
     let {commentContent, userId, postId} = this.state;
     await axios.post(`/api/forum/comments/${postId}`, {commentContent, userId});
@@ -44,19 +56,36 @@ class PostPage extends Component {
     this.componentDidMount();
   }
 
-  back() {
-    this.props.history.push('/forum')
+  allowEdit() {
+    this.setState({postEdit: !this.state.postEdit})
+    console.log(this.state.postData)
+    let {post_title, post_content} = this.state.postData;
+    if (this.state.postEdit===false) {
+      this.setState({editedTitle: post_title, editedPost: post_content})
+    }
   }
 
-  deletePost(id) {
+  editPost = async () => {
+    let {tags} = this.state.postData;
+    let {editedTitle, editedPost} = this.state;
+    let {id} = this.props.match.params;
+    await axios.put(`/api/forum/posts/${id}`, {editedTitle, editedPost, tags});
+    this.setState({postEdit: !this.state.postEdit})
+    this.pageLoad();
+  };
+
+  changePostTitle(value) {
+    this.setState({editedTitle: value})
+  }
+
+  changePostContent(value) {
+    this.setState({editedPost: value})
+  }
+
+  deletePost = (id) => {
     axios.delete(`/api/forum/posts/${id}`).then(res => {
       this.props.history.push('/forum')
     })
-  }
-
-  allowEdit(comment) {
-    comment.edit=!comment.edit
-    console.log(comment.edit)
   }
 
   deleteComment(commentId) {
@@ -65,43 +94,60 @@ class PostPage extends Component {
     })
   }
 
+  signUpMessage() {
+    swal({
+      title: 'Whoops!',
+      text: 'You must be logged in before you can leave a comment',
+      animation: false,
+      type: 'error',
+      width: 290,
+      confirmButtonColor: '#ed1d24',
+      confirmButtonText: 'Got it',
+      customClass: 'animated bounceInUp commentMessage'
+    })
+  }
+
   render() {
     let {user} = this.props;
     let resultComments = this.state.comments.map((comment,i) => {
-      console.log(this.state.comments)
       return (
-        <div className='comments' key={comment.comment_id}>
-          <div className='userNameAndDate'>
-            <span className='detailInfo'><Link to={`/profile/${comment.user_id}`}>-{comment.user_name}-</Link></span>
-            <span className='detailInfo'>{comment.comment_updated_at}</span>
-          </div>
-          <div contentEditable={comment.edit}>{comment.comment_content}</div>
-          <div className='editDelete'>
-            {user.user_id===comment.user_id?<button className='editDeleteButton' onClick={() => this.allowEdit(comment)}>Edit</button>:null}
-            {user.user_id===comment.user_id?<button className='editDeleteButton' onClick={() => this.deleteComment(comment.comment_id)}>Delete</button>:null}
-            </div>
+        <div key={comment.comment_id}>
+          <PostPageComment comment={comment} user={user} deleteComment={() => this.deleteComment(comment.comment_id)} pageLoad={this.pageLoad}/>
         </div>
       )
     })
     return (
       <div className='postPage'>
         <div className='postPageContainer'>
-          <button className='backToPosts' onClick={() => this.back()}>Back to Posts</button>
           <div className='post'>
             <div className='userNameAndDate'>
               <span className='detailInfo'><Link to={`/profile/${this.state.postData.user_id}`}>-{this.state.postData.user_name}-</Link></span>
               <span className='detailInfo'>{this.state.postData.post_updated_at}</span>
             </div>
+            {this.state.postEdit===false?
+            <div className='postPageProfilePost'>
             <h1>{this.state.postData.post_title}:</h1>
-            {this.state.postData.post_content}
+            <div>{this.state.postData.post_content}</div>
+            </div>:
+            <div>
+            <textarea id='postPageTitle' value={this.state.editedTitle} onChange={e => this.changePostTitle(e.target.value)}/>
+            <br/>
+            <textarea id='postPageContent' value={this.state.editedPost} onChange={e => this.changePostContent(e.target.value)}/>
+            </div>
+            }
             <div className='editDelete'>
-            {user.user_id===this.state.postData.user_id?<Link to={`/edit/${this.state.postId}`}><button className='editDeleteButton'>Edit</button></Link>:null}
-            {user.user_id===this.state.postData.user_id?<button className='editDeleteButton' onClick={() => this.deletePost(this.state.postId)}>Delete</button>:null}
+            {user.user_id===this.state.postData.user_id && this.state.postEdit===false?<button className='editDeleteButton' onClick={() => this.allowEdit()}>Edit</button>:null}
+            {user.user_id===this.state.postData.user_id && this.state.postEdit===false?<button className='editDeleteButton' onClick={() => this.deletePost(this.state.postId)}>Delete</button>:null}
+            {this.state.postEdit===true?<button className='editDeleteButton' onClick={() => this.editPost()}>Confirm</button>:null}
+            {this.state.postEdit===true?<button className='editDeleteButton' onClick={() => this.allowEdit()}>Cancel</button>:null}
             </div>
           </div>
-          <textarea className='commentContent' placeholder='comment' value={this.state.commentContent} onChange={e => this.changeCommentContent(e.target.value)}/>
+          <textarea className='commentContent' placeholder='leave a comment' value={this.state.commentContent} onChange={e => this.changeCommentContent(e.target.value)}/>
           <br/>
-          <button className='submitButton' onClick={() => this.createComment()}>Submit</button>
+          {this.props.user.user_id?
+          <button className='submitButton' onClick={() => this.createComment()}>Submit</button>:
+          <button className='submitButton' onClick={() => this.signUpMessage()}>Submit</button>
+          }
           {resultComments}
         </div>
       </div>

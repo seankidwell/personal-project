@@ -15,7 +15,15 @@
   border: 1px solid black;
   width: 250px;
   height: 21px;
-  margin-top: 55px;
+  margin-top: 10px;;
+}
+
+.postTitleSection {
+}
+
+.postTitleSection div {
+  width: 250px;
+  margin: 0px
 }
 
 .contentArea {

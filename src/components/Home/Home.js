@@ -66,7 +66,7 @@ export default class Home extends Component {
           </div>
           <div className="topics-of-interest">
           <div className="comicCharacters">
-              <div className='homeTitle'>Characters</div>
+            <div className='homeTitle'>Characters</div>
               <div className='characterTitle'>Heros</div>
               <div className='characterLinks'>
                 <div className="characterLink">
@@ -109,6 +109,11 @@ export default class Home extends Component {
                     <span>Wiccan</span>
                   </Link>
                 </div>
+                <div className="characterLink">
+                  <Link to={`/character/gwen%20stacy`}>
+                    <span>Gwen Stacy</span>
+                  </Link>
+                </div>
               </div>
               <div className='characterTitle'>Villains</div>
               <div className='characterLinks'>
@@ -120,6 +125,19 @@ export default class Home extends Component {
                 <div className="characterLink">
                   <Link to={`/character/Mysterio`}>
                     <span>Mysterio</span>
+                  </Link>
+                </div>
+              </div>
+              <div className='characterTitle'>Teams/Organizations</div>
+              <div className='characterLinks'>
+                <div className="characterLink">
+                  <Link to={`/character/Fantastic%20Four`}>
+                    <span>Fantastic Four</span>
+                  </Link>
+                </div>
+                <div className="characterLink">
+                  <Link to={`/character/Guardians%20of%20the%20Galaxy`}>
+                    <span>Guardians of the Galaxy</span>
                   </Link>
                 </div>
               </div>

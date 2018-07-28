@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Nav from '../Nav/Nav';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {getUserData} from '../../redux/users';
 import marvelLogo from '../../images/marvel-logo.jpeg';
 import backArrow from '../../images/backArrow.png';
@@ -40,14 +40,10 @@ class Header extends Component {
     document.getElementById("mySidenav").style.paddingLeft = "0";
   }
 
-  goBack() {
-    this.props.history.goBack();
-  }
-
   render() {
     return (
       <div className='header'>
-        <img alt='marvel-logo' className='marvel-logo' height='50' width='138' src={marvelLogo}/>
+        <Link to={'/#/'}><img alt='marvel-logo' className='marvel-logo' height='50' width='138' src={marvelLogo}/></Link>
         <div id="mySidenav" className="sidenav">
           <a href="javascript:void(0)" className="closebtn" onClick={() => this.closeNav()}>&times;</a>
           {this.props.user.user_id?
@@ -65,7 +61,7 @@ class Header extends Component {
           <Nav closeNav={this.closeNav}/>
         </div>
         <span className='mobileMenu' onClick={() => this.openNav()}>&#9776;</span>
-        <img alt='back' className='backArrow' src={backArrow} onClick={() => this.goBack()}/>
+        <img alt='back' className='backArrow' src={backArrow} onClick={this.props.history.goBack}/>
       </div>
     )
   }
@@ -77,4 +73,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getUserData})(Header);
+export default withRouter(connect(mapStateToProps, {getUserData})(Header));
