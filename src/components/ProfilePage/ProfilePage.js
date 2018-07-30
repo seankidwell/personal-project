@@ -104,8 +104,8 @@ class ProfilePage extends Component {
    this.setState({isUploading: true})
 
    const fileName = `${randomString()}-${file.name.replace(/\s/g, '-')}`
-
-   axios.get('/sign-s3', {
+    console.log(fileName)
+   axios.get('/api/sign-s3', {
      params: {
        'file-name': fileName,
        'file-type': file.type
@@ -129,7 +129,7 @@ class ProfilePage extends Component {
     axios.put(signedRequest, file, options)
     .then( response => {
       this.setState({isUploading: false, url: url})
-      axios.post(`/api/profile/picture/${this.props.match.params.userId}`, file)
+      axios.post(`/api/profile/picture/${this.props.match.params.userId}`, {file})
     })
     .catch( err => {
       this.setState({
@@ -143,18 +143,18 @@ class ProfilePage extends Component {
     })
   }
 
-  uploadImage(file) {
-    const config = {
-    bucketName: 'kidwell-personal-project',
-    region: 'us-west-1',
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.AWS_SECRET_ACCESS_KEY,
-    }
-    S3FileUpload
-    .uploadFile(file, config)
-    .then(data => console.log(data))
-    .catch(err => console.error(err))
-  }
+  // uploadImage(file) {
+  //   const config = {
+  //   bucketName: 'kidwell-personal-project',
+  //   region: 'us-west-1',
+  //   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  //   secretAccessKey: process.AWS_SECRET_ACCESS_KEY,
+  //   }
+  //   S3FileUpload
+  //   .uploadFile(file, config)
+  //   .then(data => console.log(data))
+  //   .catch(err => console.error(err))
+  // }
 
  
   render() {
@@ -225,7 +225,7 @@ class ProfilePage extends Component {
             </Dropzone>:
             <div>
             <img className='profilePagePic' alt='profilePic' src={this.state.image}/>
-            <button onClick={() => this.uploadImage()}>upload image</button>
+            {/* <button onClick={() => this.uploadImage()}>upload image</button> */}
             </div>}
             {this.state.profileEdit===false?
             <div className='profileUsername'>{this.state.username}</div>:

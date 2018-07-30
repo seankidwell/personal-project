@@ -74,6 +74,7 @@
 
 .profilePagePic {
   height: 125px;
+  width: 125px;
   box-shadow: 3px 3px red, 9px 9px 7px;
 }
 

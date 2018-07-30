@@ -14,10 +14,14 @@ class Header extends Component {
     
   }
 
-  componentDidMount() {
+  pageLoad() {
     axios.get('/api/user-data').then(res => {
       this.props.getUserData(res.data)
     })
+  }
+
+  componentDidMount() {
+    this.pageLoad();
   }
 
   login = () => {

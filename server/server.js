@@ -39,7 +39,7 @@ const {
     AWS_SECRET_ACCESS_KEY
 } = process.env
 
-app.get('/sign-s3', (req, res) => {
+app.get('/api/sign-s3', (req, res) => {
   console.log('get hit')
 
   aws.config = {
@@ -116,7 +116,7 @@ app.get("/api/profile/posts/:userId", controller.getPostsUsingUserId);
 app.get("/api/posts/comments/:userId", controller.getPostsWithComments);
 
 app.put("/api/profile/edit/:userId", controller.editProfile);
-app.put("/api/profile/picture/:userId", controller.updatePicture);
+app.post("/api/profile/picture/:userId", controller.updatePicture);
 
 app.get("/api/forum/posts", controller.getPostsWithUsers);
 app.get("/api/forum/post/:postId", controller.getPostWithUser);
