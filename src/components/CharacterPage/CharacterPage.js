@@ -24,7 +24,6 @@ export default class CharacterPage extends Component {
       .then(res => {
         if (res.data.data.results[0]) {
           let { name, thumbnail, description } = res.data.data.results[0];
-          console.log(res.data.data.results[0]);
           this.setState({
             characterName: name,
             characterImage: thumbnail.path,
