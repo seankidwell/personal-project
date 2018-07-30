@@ -6,7 +6,6 @@ import ReactS3Uploader from 'react-s3-uploader';
 import Dropzone from 'react-dropzone';
 import {v4 as randomString} from 'uuid';
 import {GridLoader} from 'react-spinners';
-import S3FileUpload from 'react-s3';
 import axios from 'axios';
 import './ProfilePage.css';
 
