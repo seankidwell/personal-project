@@ -23,7 +23,8 @@ class ProfilePage extends Component {
       comments: [],
       postButton: true,
       commentButton: false,
-      isUploading: false
+      isUploading: false,
+      url: ''
     }
   }
 
@@ -118,6 +119,7 @@ class ProfilePage extends Component {
   }
 
   uploadFile = (file, signedRequest, url) => {
+    console.log('not put response', file, signedRequest, url)
     
     var options = {
       headers: {
@@ -127,6 +129,7 @@ class ProfilePage extends Component {
 
     axios.put(signedRequest, file, options)
     .then( response => {
+      console.log('put response:', response)
       this.setState({isUploading: false, url: url})
       axios.post(`/api/profile/picture/${this.props.match.params.userId}`, {file})
     })
@@ -134,11 +137,11 @@ class ProfilePage extends Component {
       this.setState({
         isUploading: false
       })
-      if(err.response.status === 403) {
+      // if(err.response.status === 403) {
         alert('Your request for a signed URL failed with a status 403. Double check the CORS configuration and bucket policy in the README. You also will want to double check your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY in your .env and ensure that they are the same as the ones that you created in the IAM dashboard. You may need to generate new keys\n' + err.stack)
-      } else {
+      // } else {
         alert(`ERROR: ${err.status}\n ${err.stack}`)
-      }
+      // }
     })
   }
 
