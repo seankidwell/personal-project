@@ -247,7 +247,7 @@ class ProfilePage extends Component {
             }
           </div>
         </div>
-        <div className='postsCommentsButtons'><button onClick={() => this.changeToPosts()}>Posts</button>|<button onClick={() => this.changeToComments()}>Comments</button></div>
+        <div className='postsCommentsButtons'><button onClick={() => this.changeToPosts()}>Posts</button><button onClick={() => this.changeToComments()}>Comments</button></div>
         {this.state.postButton===true && this.state.commentButton===false?
         <div className='profilePosts'>{listOfPosts}</div>:
         <div className='profileComments'>{listOfPostsWithComments}</div>
