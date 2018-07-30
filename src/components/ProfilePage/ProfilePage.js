@@ -6,6 +6,7 @@ import ReactS3Uploader from 'react-s3-uploader';
 import Dropzone from 'react-dropzone';
 import {v4 as randomString} from 'uuid';
 import {GridLoader} from 'react-spinners';
+import S3FileUpload from 'react-s3';
 import axios from 'axios';
 import './ProfilePage.css';
 
@@ -128,7 +129,7 @@ class ProfilePage extends Component {
     axios.put(signedRequest, file, options)
     .then( response => {
       this.setState({isUploading: false, url: url})
-      // THEN DO SOMETHING WITH THE URL. SEND TO DB USING POST REQUEST OR SOMETHING
+      axios.post(`/api/profile/picture/${this.props.match.params.userId}`, file)
     })
     .catch( err => {
       this.setState({
@@ -140,6 +141,19 @@ class ProfilePage extends Component {
         alert(`ERROR: ${err.status}\n ${err.stack}`)
       }
     })
+  }
+
+  uploadImage(file) {
+    const config = {
+    bucketName: 'kidwell-personal-project',
+    region: 'us-west-1',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.AWS_SECRET_ACCESS_KEY,
+    }
+    S3FileUpload
+    .uploadFile(file, config)
+    .then(data => console.log(data))
+    .catch(err => console.error(err))
   }
 
  
@@ -209,7 +223,10 @@ class ProfilePage extends Component {
                 }
 
             </Dropzone>:
-            <img className='profilePagePic' alt='profilePic' src={this.state.image}/>}
+            <div>
+            <img className='profilePagePic' alt='profilePic' src={this.state.image}/>
+            <button onClick={() => this.uploadImage()}>upload image</button>
+            </div>}
             {this.state.profileEdit===false?
             <div className='profileUsername'>{this.state.username}</div>:
             <textarea id='profileUsernameContent' value={this.state.editedUsername} onChange={e => this.changeUsername(e.target.value)}/>

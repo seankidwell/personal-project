@@ -87,7 +87,7 @@
 }
 
 .characterLinks {
-  max-height: 14vh;
+  max-height: 100px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

@@ -83,6 +83,15 @@ module.exports = {
     })
   },
 
+  updatePicture: (req, res) => {
+    const db = req.app.get("db");
+    let {userId} = req.params;
+    let {profilePicture} = req.body;
+    db.update_image([profilePicture, userId]).then(() => {
+      res.end()
+    })
+  },
+
   getPostsWithUsers: (req, res) => {
     const db = req.app.get("db");
     db.retrieve_posts_with_users().then(posts => {

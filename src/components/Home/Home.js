@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import spiderMan from '../../images/spider-man.webp';
+import spiderMan from '../../images/spider-man2.jpg';
 import thanos from '../../images/thanos.jpg';
 import "./Home.css";
 

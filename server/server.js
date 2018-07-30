@@ -116,6 +116,7 @@ app.get("/api/profile/posts/:userId", controller.getPostsUsingUserId);
 app.get("/api/posts/comments/:userId", controller.getPostsWithComments);
 
 app.put("/api/profile/edit/:userId", controller.editProfile);
+app.put("/api/profile/picture/:userId", controller.updatePicture);
 
 app.get("/api/forum/posts", controller.getPostsWithUsers);
 app.get("/api/forum/post/:postId", controller.getPostWithUser);
