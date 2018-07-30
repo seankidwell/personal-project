@@ -43,7 +43,7 @@ export default class ComicPage extends Component {
     })
     let listOfCreators = this.state.comicCreators.map((creator,i) => {
       return(
-        <li className='comicCreator' key={i}>{creator.name}: {creator.role} </li>
+        <li className='comicCreator' key={i}>{creator.name} - {creator.role} </li>
       )
     })
     return (

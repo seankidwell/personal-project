@@ -41,19 +41,17 @@ class Post extends Component {
       <div className="postCreator">
         <div className="postContainer">
           <div className='postTitleSection'>
-            <div>Title</div>
+            <div>Title:</div>
             <textarea
               className="titleArea"
-              placeholder="title"
               onChange={e => this.changeTitle(e.target.value)}
             />
           </div>
           <br />
           <div className='postContentSection'>
-            <div>Content</div>
+            <div>Content:</div>
             <textarea
               className="contentArea"
-              placeholder="content"
               onChange={e => this.changeContent(e.target.value)}
             />
           </div>

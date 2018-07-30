@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import spiderMan from '../../images/spider-man.webp';
+import thanos from '../../images/thanos.jpg';
 import "./Home.css";
 
 export default class Home extends Component {
@@ -15,7 +17,17 @@ export default class Home extends Component {
         manThing: 70832,
         fantasticFour: 12894,
         avengers: 6964,
-        spiderMan: 6582
+        spiderMan: 6582,
+        spiderMan2: 43225,
+        thunderBolts: 15325,
+        spiderMan3: 70099,
+        moonKnight: 58050,
+        punisher: 27580,
+        newMutants: 26057,
+        x: 27962,
+        xFactor: 3150,
+        blackPanther: 65268,
+        captainMarvel: 65271
       }
     };
   }
@@ -48,25 +60,20 @@ export default class Home extends Component {
             />
             <Link to={`/character/${encodeURIComponent(upperCase(search))}`}><button>Go</button></Link>
           </div>
+          <div className='otwTitle'>Hero/Villain of the Week</div>
           <div className='otw'>
-            <div className="hero-otw">
-              <span>Hero of the Week</span>
-              <br />
-              <Link to={`/character/spider-man`}>
-                <span>Spider-Man</span>
-              </Link>
+            <div className='otwContainer'>
+              <span>Spider-Man</span>
+              <Link to={`/character/Spider-Man`}><img className='otwPicture' alt='spider-man' src={spiderMan} height='190' width='125'/></Link>
             </div>
-            <div className="villain-otw">
-              <span>Villain of the Week</span>
-              <br />
-              <Link to={`/character/thanos`}>
-                <span>Thanos</span>
-              </Link>
+            <div className='otwContainer'>
+              <span>Thanos</span>
+              <Link to={`/character/Thanos`}><img className='otwPicture' alt='thanos' src={thanos} height='190' width='125'/></Link>
             </div>
           </div>
           <div className="topics-of-interest">
           <div className="comicCharacters">
-            <div className='homeTitle'>Characters</div>
+            <div className='homeTitle'>Characters of Interest</div>
               <div className='characterTitle'>Heros</div>
               <div className='characterLinks'>
                 <div className="characterLink">
@@ -109,11 +116,6 @@ export default class Home extends Component {
                     <span>Wiccan</span>
                   </Link>
                 </div>
-                <div className="characterLink">
-                  <Link to={`/character/gwen%20stacy`}>
-                    <span>Gwen Stacy</span>
-                  </Link>
-                </div>
               </div>
               <div className='characterTitle'>Villains</div>
               <div className='characterLinks'>
@@ -127,9 +129,54 @@ export default class Home extends Component {
                     <span>Mysterio</span>
                   </Link>
                 </div>
+                <div className="characterLink">
+                  <Link to={`/character/Ultron`}>
+                    <span>Ultron</span>
+                  </Link>
+                </div>
+                <div className="characterLink">
+                  <Link to={`/character/Mystique`}>
+                    <span>Mystique</span>
+                  </Link>
+                </div>
+                <div className="characterLink">
+                  <Link to={`/character/Sabretooth`}>
+                    <span>Sabretooth</span>
+                  </Link>
+                </div>
+                <div className="characterLink">
+                  <Link to={`/character/Kingpin`}>
+                    <span>Kingpin</span>
+                  </Link>
+                </div>
+                <div className="characterLink">
+                  <Link to={`/character/Ronan`}>
+                    <span>Ronan</span>
+                  </Link>
+                </div>
+                <div className="characterLink">
+                  <Link to={`/character/Carnage`}>
+                    <span>Carnage</span>
+                  </Link>
+                </div>
               </div>
               <div className='characterTitle'>Teams/Organizations</div>
-              <div className='characterLinks'>
+              <div className='teamLinks'>
+                <div className="characterLink">
+                  <Link to={`/character/Avengers`}>
+                    <span>Avengers</span>
+                  </Link>
+                </div>
+                <div className="characterLink">
+                  <Link to={`/character/Defenders`}>
+                    <span>Defenders</span>
+                  </Link>
+                </div>
+                <div className="characterLink">
+                  <Link to={`/character/S.h.i.e.l.d.`}>
+                    <span>S.H.I.E.L.D.</span>
+                  </Link>
+                </div>
                 <div className="characterLink">
                   <Link to={`/character/Fantastic%20Four`}>
                     <span>Fantastic Four</span>
@@ -140,11 +187,16 @@ export default class Home extends Component {
                     <span>Guardians of the Galaxy</span>
                   </Link>
                 </div>
+                <div className="characterLink">
+                  <Link to={`/character/X-Men`}>
+                    <span>X-Men</span>
+                  </Link>
+                </div>
               </div>
             </div>
             <div className="comicBooks">
               <div className='homeTitle'>Popular Comics over the Years</div>
-              <div className='years'>60's-80's</div>
+              <div className='years'>60's-70's</div>
               <div className="comicLink">
                 <Link to={`/comic/${comicIds.fantasticFour}`}>
                   <span>Fantastic Four (1961) #1</span>
@@ -175,10 +227,20 @@ export default class Home extends Component {
                   <span>Man-Thing (1979) #2</span>
                 </Link>
               </div>
-              <div className='years'>80's-00's</div>
+              <div className='years'>80's-90's</div>
+              <div className="comicLink">
+                <Link to={`/comic/${comicIds.moonKnight}`}>
+                  <span>Moon Knight (1980) #15</span>
+                </Link>
+              </div>
               <div className="comicLink">
                 <Link to={`/comic/${comicIds.cloakAndDagger}`}>
                   <span>Cloak and Dagger (1985) #10</span>
+                </Link>
+              </div>
+              <div className="comicLink">
+                <Link to={`/comic/${comicIds.spiderMan3}`}>
+                  <span>Web of Spider-Man Annual (1985) #4</span>
                 </Link>
               </div>
               <div className="comicLink">
@@ -186,7 +248,47 @@ export default class Home extends Component {
                   <span>Tales of Suspense (1995) #1</span>
                 </Link>
               </div>
+              <div className="comicLink">
+                <Link to={`/comic/${comicIds.thunderBolts}`}>
+                  <span>Thunderbolts (1997) #22</span>
+                </Link>
+              </div>
+              <div className="comicLink">
+                <Link to={`/comic/${comicIds.spiderMan2}`}>
+                  <span>Spider-Man: Chapter One (1998) #3</span>
+                </Link>
+              </div>
               <div className='years'>00's-present</div>
+              <div className="comicLink">
+                <Link to={`/comic/${comicIds.xFactor}`}>
+                  <span>X-Factor (2005) #2</span>
+                </Link>
+              </div>
+              <div className="comicLink">
+                <Link to={`/comic/${comicIds.punisher}`}>
+                  <span>Punisher (2008) #12</span>
+                </Link>
+              </div>
+              <div className="comicLink">
+                <Link to={`/comic/${comicIds.newMutants}`}>
+                  <span>New Mutants (2009) #8</span>
+                </Link>
+              </div>
+              <div className="comicLink">
+                <Link to={`/comic/${comicIds.x}`}>
+                  <span>What If? Astonishing X-Men (2009) #1</span>
+                </Link>
+              </div>
+              <div className="comicLink">
+                <Link to={`/comic/${comicIds.blackPanther}`}>
+                  <span>Black Panther (2016) #168</span>
+                </Link>
+              </div>
+              <div className="comicLink">
+                <Link to={`/comic/${comicIds.captainMarvel}`}>
+                  <span>The Mighty Captain Marvel (2017) #127</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

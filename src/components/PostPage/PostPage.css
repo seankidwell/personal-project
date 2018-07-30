@@ -6,10 +6,6 @@
   background: linear-gradient(to bottom, #FFFFFF, #EF3B36); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.postPageContainer {
-  height: 100%;
-}
-
 .post {
   text-align: left;
   word-wrap: break-word;
@@ -63,8 +59,9 @@
   border-radius: 25px;
   border: 2px solid black;
   margin-bottom: 18px;
-  margin-top: 5px;
+  margin-top: 6px;
   box-shadow: inset -1px -1px 3px black;
+  width: 80px;
 }
 
 .commentMessage {

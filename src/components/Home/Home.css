@@ -42,23 +42,19 @@
 }
 
 .otw {
-  padding: 10px 30px;
+  padding: 10px 32px;
   display: flex;
   justify-content: space-between
 }
 
-.hero-otw {
-  height: 170px;
-  width: 135px;
-  background-color: darkred;
-  box-shadow: 3px 3px red, 9px 9px 7px;
+.otwPicture {
+  box-shadow: 3px 3px red, 9px 9px 7px black;
+  margin-top: 2px;
 }
 
-.villain-otw {
-  height: 170px;
-  width: 135px;
-  background-color: darkred;
-  box-shadow: 3px 3px red, 9px 9px 7px;
+.otwContainer span {
+  font-family: 'Lucida Grande';
+  font-size: 20px;
 }
 
 .comicBooks {
@@ -75,12 +71,13 @@
 }
 
 .comicLink {
-  margin: 4px 12px;
+    margin: 5px;
+    font-style: italic;
 }
 
 .comicCharacters {
   border: 1px solid black;
-  margin: 12px 0px;
+  margin: 15px 0px;
   border-radius: 10px;
   padding: 10px;
   background-color: white;
@@ -90,14 +87,21 @@
 }
 
 .characterLinks {
-  max-height: 20vh;
+  max-height: 14vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.teamLinks {
+  max-height: 12vh;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 
 .characterLink {
-  margin: 4px;
+    margin: 4px;
 }
 
 .homeTitle {
@@ -107,12 +111,28 @@
 }
 
 .years {
-  margin: 0px 5px;
+  margin: 0px 3px;
   margin-bottom: 4px;
+  font-size: 18px;
+  text-decoration: underline;
 }
 
 .characterTitle {
   margin: 0px 5px;
   margin-bottom: 4px;
+  font-size: 18px;
   text-align: left;
+  text-decoration: underline;
+}
+
+.otwTitle {
+  margin: 5px;
+  margin-top: 21px;
+  font-size: 24px;
+  font-family: 'Lucida Grande';
+  text-shadow: red 1px 1px 0px;
+}
+
+.otwContainer {
+  width: 125px;
 }

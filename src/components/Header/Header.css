@@ -1,7 +1,8 @@
 .header {
   width: 100%;
   min-height: 13vh;
-  background-color: #ed1d24;
+  /* background-color: #ed1d24; */
+  background-color: red;
   position: sticky;
   top: 0;
   display: flex;
@@ -10,16 +11,16 @@
   z-index: 1;
 }
 
-.marvel-logo {
-    box-shadow: black 0px 0px 20px;
+#marvel-logo {
+  box-shadow: black 0px 0px 20px;
 }
 
 .mobileMenu {
-    font-size: 39px;
-    position: absolute;
-    right: 25px;
-    top: 27px;
-    color: black;
+  font-size: 39px;
+  position: absolute;
+  right: 25px;
+  top: 27px;
+  color: black;
 }
 
 .backArrow {
@@ -65,7 +66,7 @@
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: red;
 }
 
 .sidenav .closebtn {
@@ -73,7 +74,7 @@
   position: absolute;
   right: 23px;
   top: 16px;
-  color: #ed1d24;
+  color: #9e9e9e;
 }
 
 @media screen and (max-height: 450px) {

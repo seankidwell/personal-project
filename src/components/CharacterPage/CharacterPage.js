@@ -48,11 +48,11 @@ export default class CharacterPage extends Component {
             <h1 className="characterName">{this.state.characterName}</h1>
             <div className="characterDescription">
               <div>Description: </div>
-              {this.state.characterDescription || characterDescription[decURI].description}
+              {characterDescription[decURI]? characterDescription[decURI].description: this.state.characterDescription}
             </div>
           </div>
         ) : (
-          <span>No character found</span>
+          <span>Sorry, character could not be found :(</span>
         )}
       </div>
     );

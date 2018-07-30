@@ -39,6 +39,8 @@
   border: 1px solid black;
   border-radius: 7px;
   padding: 10px;
+  font-size: 17px;
+  font-family: 'Lucida Grande';
   text-align: left;
   background-color: white;
   box-shadow: inset -3px -3px 5px;
@@ -52,6 +54,7 @@
 .comicCreatorsContainer {
   margin-top: 10px;
   padding: 10px;
+  font-size: 17px;
   text-align: left;
 }
 

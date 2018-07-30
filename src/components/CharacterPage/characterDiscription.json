@@ -33,5 +33,26 @@
   "The Enforcers": {
     "image": "sdlfk",
     "description": "The Enforcers are a group of hired assassins and extortionists, each with an expertise in a different unique area of combat, whose goal it is to aid various employers in the takeover of New York City's criminal gangs. Members include: Fancy Dan, The Ox, Montana, Snake Marston, and Hammer Harrison."
+  },
+  "Mystique": {
+    "description": "Mystique is a member of a subspecies of humanity known as mutants, who are born with superhuman abilities. Mystique is a shapeshifter who can mimic the appearance and voice of any person with exquisite precision, and her natural appearance includes blue skin and yellow eyes. She is typically portrayed as a foe of the X-Men."
+  },
+  "Kingpin": {
+    "description": "Kingpin, AKA Willson Fisk, is one of the most-feared and powerful crimelords, typically holding the position of New York City's crime overlord. Initially an adversary of Spider-Man, the character later became the archenemy of Daredevil, and a recurring foe of the Punisher."
+  },
+  "Sabretooth": {
+    "description": "Sabretooth and Wolverine were participants of the Cold War supersoldier program Weapon X, and that Sabretooth saw Wolverine as competition and therefore antagonized him. While Wolverine is depicted as suppressing his more savage qualities, Sabretooth does the opposite and embraces them. His abilities are nearly identical to Wolverine's, with his retractable claws comming from his fingers being the most notable difference."
+  },
+  "Ronan": {
+    "description": "Long time Supreme Public Accuser and eventual Supremor of the Kree Empire, Ronan is married to Crystal of the Inhumans, the new benefactors and leaders of the Kree. Because he is of the Kree alien race, he is incredibly strong and uses a war hammer called the 'Universal Weapon' which can absorb and fire cosmic energy, manipulate matter, generate force-fields, and control gravity."
+  },
+  "Carnage": {
+    "description": "Carnage belongs to a race of amorphous extraterrestrial parasites known as the Symbiotes. He is an adversary to Spider-Man, as well as an archenemy to Venom. The symbiote has taken many hosts; the original and most notable host is Cletus Kasady , a serial killer from the Marvel Universe."
+  },
+  "S.h.i.e.l.d.": {
+    "description": "A U.N. affiliated intelligence agency dealing primarily with terrorism and superhuman threats that was originally founded by the U.S. government. The acronym originally stood for Supreme Headquarters, International Espionage, Law-Enforcement Division. It was changed in 1991 to Strategic Hazard Intervention Espionage Logistics Directorate. The most notable member is Nick Fury."
+  },
+  "Defenders" : {
+    "description": "They are usually presented as a 'non-team' of individualistic 'outsiders' who, in their prior adventures, are known for following their own agendas. The team often battles mystic and supernatural threats. Its original incarnation was led by Doctor Strange and included Hulk, Namor, and—eventually—Silver Surfer."
   }
 }

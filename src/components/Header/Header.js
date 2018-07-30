@@ -43,7 +43,7 @@ class Header extends Component {
   render() {
     return (
       <div className='header'>
-        <Link to={'/#/'}><img alt='marvel-logo' className='marvel-logo' height='50' width='138' src={marvelLogo}/></Link>
+        <Link to={'/'}><img alt='marvel-logo' id='marvel-logo' height='50' width='138' src={marvelLogo}/></Link>
         <div id="mySidenav" className="sidenav">
           <a href="javascript:void(0)" className="closebtn" onClick={() => this.closeNav()}>&times;</a>
           {this.props.user.user_id?
