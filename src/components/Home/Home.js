@@ -74,7 +74,7 @@ export default class Home extends Component {
           <div className="topics-of-interest">
           <div className="comicCharacters">
             <div className='homeTitle'>Characters of Interest</div>
-              <div className='characterTitle'>Heros</div>
+              <div className='characterTitle'>Heroes</div>
               <div className='characterLinks'>
                 <div className="characterLink">
                   <Link to={`/character/wolverine`}>
