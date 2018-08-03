@@ -7,12 +7,13 @@
 }
 
 .homeContainer {
-  height: 100%;
+    height: 100%;
 }
 
 .characterSearch {
   border: 1px solid black;
-  margin: 0px 70px;
+  width: 240px;
+  margin: 0px auto;
   margin-bottom: 12px;
   border-radius: 10px;
   padding: 10px;
@@ -42,6 +43,7 @@
 }
 
 .otw {
+  width: 380px;
   padding: 10px 32px;
   display: flex;
   justify-content: space-between
