@@ -5,6 +5,7 @@ const massive = require("massive");
 const axios = require("axios");
 const aws = require('aws-sdk')
 const controller = require("./controller");
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
@@ -130,6 +131,10 @@ app.delete("/api/forum/comment/:commentId", controller.deleteComment);
 app.put("/api/forum/comment/:commentId", controller.editComment);
 
 app.post("/api/forum/comments/:postId", controller.createComment);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/../build/index.html`))
+})
 
 app.listen(port, () => {
   console.log(`listening on ${port}`);
