@@ -1,9 +1,17 @@
 .forum {
   min-height: 87vh;
   padding: 17px;
-  background: #EF3B36;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #FFFFFF, #EF3B36);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #FFFFFF, #EF3B36); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #ef3b36; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #ffffff,
+    #ef3b36
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #ffffff,
+    #ef3b36
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .posts {
@@ -14,10 +22,11 @@
   text-align: left;
   border-radius: 15px;
   border: 2px solid black;
+  margin: 0 auto;
   margin-bottom: 10px;
   padding: 8px;
   height: 57px;
-  width: 96%;
+  width: 364px;
   background-color: white;
   box-shadow: 4px 4px 5px;
 }
@@ -38,14 +47,13 @@
   border-radius: 25px;
   border: 2px solid black;
   box-shadow: inset -1px -1px 5px black;
-  position: fixed;
-  bottom: 32px;
-  right: 127px;
+  position: relative;
+  top: 12px;
 }
 
 .detailInfo {
   font-size: 13px;
-  color: rgb(71, 71, 71)
+  color: rgb(71, 71, 71);
 }
 
 .postMessage {

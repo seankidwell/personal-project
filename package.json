@@ -45,5 +45,8 @@
     "ignore": [
       "src/*"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^3.0.3"
   }
 }

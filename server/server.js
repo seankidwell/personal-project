@@ -129,7 +129,6 @@ app.delete("/api/forum/posts/:id", controller.deletePost);
 app.get("/api/forum/comments/:postId", controller.getCommentsWithUsers);
 app.delete("/api/forum/comment/:commentId", controller.deleteComment);
 app.put("/api/forum/comment/:commentId", controller.editComment);
-
 app.post("/api/forum/comments/:postId", controller.createComment);
 
 app.get("*", (req, res) => {

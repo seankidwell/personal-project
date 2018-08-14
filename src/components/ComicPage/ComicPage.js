@@ -16,10 +16,8 @@ export default class ComicPage extends Component {
   }
 
   componentDidMount() {
-    const urlStart = 'http://gateway.marvel.com/v1/public/comics/';
+    const urlStart = 'https://gateway.marvel.com/v1/public/comics/';
     const urlEnd = '?ts=1&apikey=abbb5ba81bf1d08c76fb30abc133b7fb&hash=5d8724bda4570f53616f63b789c6f6bd';
-    // const urlStart = 'https://gateway.marvel.com/v1/public/comics?formatType=comic&title=';
-    // const urlEnd = '&ts=1&apikey=abbb5ba81bf1d08c76fb30abc133b7fb&hash=5d8724bda4570f53616f63b789c6f6bd';
     axios.get(`${urlStart}${this.props.match.params.comicId}${urlEnd}`).then(res => {
       let {images, description, title, characters, creators, comics} = res.data.data.results[0]
       this.setState({
