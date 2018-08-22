@@ -76,6 +76,7 @@ app.get('/api/sign-s3', (req, res) => {
 });
 
 app.get("/auth/callback", async (req, res) => {
+  console.log('auth sucks')
   let payload = {
     client_id: REACT_APP_CLIENT_ID,
     client_secret: CLIENT_SECRET,
