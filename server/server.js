@@ -85,12 +85,12 @@ app.get("/auth/callback", async (req, res) => {
     grant_type: "authorization_code",
     redirect_uri: `http://${req.headers.host}/auth/callback`
   };
-
+  console.log('token')
   let responseWithToken = await axios.post(
     `https://${REACT_APP_DOMAIN}/oauth/token`,
     payload
   );
-
+  console.log('user')
   let userData = await axios.get(
     `https://${REACT_APP_DOMAIN}/userinfo?access_token=${
       responseWithToken.data.access_token
@@ -99,6 +99,7 @@ app.get("/auth/callback", async (req, res) => {
 
   const db = req.app.get("db");
   let { sub, name, picture } = userData.data;
+  console.log('finding user')
   let userExists = await db.find_user([sub]);
   if (userExists[0]) {
     req.session.user = userExists[0];
