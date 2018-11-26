@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import characterDescription from './characterDiscription.json';
+import {Circle} from 'better-react-spinkit'
 import "./CharacterPage.css";
 
 export default class CharacterPage extends Component {
@@ -51,7 +52,7 @@ export default class CharacterPage extends Component {
             </div>
           </div>
         ) : (
-          <span>Sorry, character could not be found :(</span>
+          <Circle className='loader' size={100} scaleEnd={.1} scaleStart={.7}/>
         )}
       </div>
     );

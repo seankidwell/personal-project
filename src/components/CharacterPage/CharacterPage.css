@@ -32,6 +32,13 @@
 }
 
 .characterDescription div {
-    font-size: 21px;
-    margin-bottom: 6px;
-  }
+  font-size: 21px;
+  margin-bottom: 6px;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  height: 70vh;
+  align-items: center;
+}

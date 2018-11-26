@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import {Circle} from 'better-react-spinkit';
 import './ComicPage.css';
 
 export default class ComicPage extends Component {
@@ -46,20 +47,26 @@ export default class ComicPage extends Component {
     })
     return (
       <div className='comicPage'>
-        <img alt='comicCover' className='comicCover' src={`${this.state.comicImage}/portrait_incredible.jpg`}/>
-        <h1 className='comicTitle'>{this.state.comicTitle}</h1>
-        <div className='comicDescription'>
-        <div>Description: </div>
-        {this.state.comicDescription}
-        </div>
-        <div className='comicCreatorsContainer'>
-          <span>Creators:</span>
-          <div className='comicCreators'>{listOfCreators}</div>
-        </div>
-        <div className='relatedCharactersContainer'>
-          <div className='relatedCharacters'>Related Characters:</div>
-          {listOfCharacters}
-        </div>
+        {this.state.comicImage ? (
+          <div>
+            <img alt='comicCover' className='comicCover' src={`${this.state.comicImage}/portrait_incredible.jpg`}/>
+            <h1 className='comicTitle'>{this.state.comicTitle}</h1>
+            <div className='comicDescription'>
+            <div>Description: </div>
+            {this.state.comicDescription}
+            </div>
+            <div className='comicCreatorsContainer'>
+              <span>Creators:</span>
+              <div className='comicCreators'>{listOfCreators}</div>
+            </div>
+            <div className='relatedCharactersContainer'>
+              <div className='relatedCharacters'>Related Characters:</div>
+              {listOfCharacters}
+            </div>
+          </div>
+        ) : (
+          <Circle className='loader' size={100} scaleEnd={.1} scaleStart={.7}/>
+        )}
       </div>
     )
   }

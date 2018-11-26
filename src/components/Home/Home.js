@@ -36,10 +36,6 @@ export default class Home extends Component {
     this.setState({ search: value });
   }
 
-  getImage() {
-
-  }
-
   render() {
     let { comicIds, search } = this.state;
     function upperCase(str) {
