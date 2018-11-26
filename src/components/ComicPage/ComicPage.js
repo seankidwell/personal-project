@@ -28,7 +28,6 @@ export default class ComicPage extends Component {
         comicCharacters: characters.items,
         comicCreators: creators.items
       })
-      console.log(res.data.data.results[0])
     })
   }
 
