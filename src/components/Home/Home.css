@@ -43,7 +43,7 @@
 }
 
 .otw {
-  width: 380px;
+  max-width: 380px;
   margin: 0px auto;
   padding: 10px 32px;
   display: flex;
@@ -61,7 +61,7 @@
 }
 
 .comicBooks {
-  width: 380px;
+  max-width: 380px;
   border: 1px solid black;
   min-height: 20vh;
   margin: 0px auto;
@@ -81,7 +81,7 @@
 }
 
 .comicCharacters {
-  width: 380px;
+  max-width: 380px;
   border: 1px solid black;
   margin: 15px auto;
   border-radius: 10px;

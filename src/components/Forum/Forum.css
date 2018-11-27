@@ -26,17 +26,14 @@
   margin-bottom: 10px;
   padding: 8px;
   height: 57px;
-  width: 364px;
+  max-width: 364px;
   background-color: white;
-  box-shadow: 4px 4px 5px;
+  box-shadow: 0 3px 5px;
 }
 
 .forumPosts {
   height: 72vh;
   overflow: auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
 }
 
 .createPost {

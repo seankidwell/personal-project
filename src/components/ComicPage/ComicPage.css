@@ -19,6 +19,8 @@
 }
 
 .comicDescription {
+  max-width: 380px;
+  margin: 0px auto;
   border: 1px solid black;
   border-radius: 10px;
   padding: 12px;
@@ -35,15 +37,16 @@
 }
 
 .relatedCharactersContainer {
-  margin-top: 10px;
+  max-width: 380px;
+  margin: 0px auto;
   border: 1px solid black;
-  border-radius: 7px;
-  padding: 10px;
-  font-size: 17px;
-  font-family: 'Lucida Grande';
+  border-radius: 10px;
+  padding: 12px;
   text-align: left;
+  font-size: 18px;
   background-color: white;
-  box-shadow: inset -3px -3px 5px;
+  font-family: 'Lucida Grande';
+  box-shadow: inset -3px -3px 10px;
 }
 
 .relatedCharacters {
@@ -52,6 +55,8 @@
 }
 
 .comicCreatorsContainer {
+  margin: 0px auto;
+  max-width: 380px;
   margin-top: 10px;
   padding: 10px;
   font-size: 17px;
